@@ -1,0 +1,75 @@
+    h1 {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
+   font-weight: 300;
+        text-align: center;
+        
+    }
+    
+    h2 {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
+   font-weight: 300;
+        text-align: center;
+
+    }
+    
+    a {
+        color: black;
+        text-decoration: none;
+    }
+    
+    a:visited {
+        color: #ff0000;
+    }
+    
+    a:hover {
+        color: red;
+    }
+    
+    .headlink {
+        color: black;
+        text-decoration: none;
+        font-family: "Helvetica";
+        font-weight: 200;
+        margin-left: auto;
+        margin-right: auto;
+        /*padding: 75px;*/
+    }
+
+    hr {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+    
+    li {
+        display: inline;
+        padding: 8em;
+    }
+    
+    .welcome {
+        font-family: "Helvetica";
+        font-weight: 200;
+        margin-left: 100px;
+        margin-right: 100px;
+        text-align: center;
+    }
+    
+    .contact {
+        font-family:"Helvetica";
+        color: red;
+        font-weight: 300;
+        text-align: center;
+        top: 0px;
+        bottom: 100px;
+        padding-top: 2em;
+    }
+    .image {
+        text-align:center;
+    }
+    .twitter img {
+    background-image:url(https://www.twitter.com/jato);
+    height:auto;
+    width:50px;
+    padding-left: 48%;
+    padding-right: auto;
+    padding-top: 2em;
+    }
