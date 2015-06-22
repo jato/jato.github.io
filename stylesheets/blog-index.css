@@ -46,6 +46,13 @@
         display: inline;
         padding: 75px;
     }
+
+    img {
+    height: auto;
+    width: 200px;
+    margin-right: 0;
+    margin-left: 39%;
+    }
     
     .welcome {
         font-family: "Helvetica";
@@ -74,7 +81,7 @@
     background-image:url(https://www.twitter.com/jato);
     height:auto;
     width:50px;
-    margin-right: 50%;
+    margin-right: 40%;
     padding-top: 50px;
+}
     
-    }
