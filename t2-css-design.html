@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+  <title>Your page title here</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="stylesheets/blog-index.css">
+</head>
+
+<main>
+  <h1>All for One</h1>
+  <h2>Class or ID?</h2>
+  <h4>June 21, 2015</h4>
+
+  <section>
+    <p>
+      As I’m in midst of struggling with this dilemma myself, I thought I would write a blog post on the best practices when using a ‘class’ versus an ‘id’ in CSS. 
+
+    </p>
+    <p>
+        On the surface they appear to do exactly the same thing. They are both attributes that can define actions for your container in HTML and CSS. There is however, a very subtle difference between them. The `id` should only be used as a single identifier for a DOM object. 
+
+    </p>
+    <p>
+        If that sentence makes sense, you’re one step ahead of me. Backing up for a second; the DOM or the “Document Object Model” is a structure devised as a method to organize HTML elements. Its design follows the tree structure with parent elements and ‘offspring’, or children, of that parent element. If you were to apply an attribute to that parent element, it would flow to the ‘children’ — just like in genetics. 
+
+    </p>
+    <p>
+      So, when applying attributes it is best to think of ID’s as one-time use only for core elements of the document, or genetic parent. This could be the header, footer, sidebar, or navigation menu. So you might find yourself using ID’s more often when creating the initial backbone of the site. 
+      </p>
+    <p>
+      Classes, on the other hand, can be used as-needed multiple times. A single class attribute can be applied to multiple elements, even those not under the same “parent” tree. They are flexible and can be used for design elements, blocks, images, or really anything inside the HTML. 
+      </p>
+
+      <p>
+        Yes, I know, the question “why not just use class attributes all the time?” came to my mind as well. IDs are rigid and should be used sparingly, however, when used properly (such as on the backbone) they are absolutely useful. The reason for this is because of ‘Specificity’. Specificity basically dictates the order of operations inside the DOM. It’s setup like this (Inline > ID > Class > Element). As you can see, the ID supersedes the class and will have priority. When building a large HTML project, the amount of classes you write can get messy and it’s pretty easy to break some element somewhere because of a misplaced class. However, you won’t break your IDs — which is why it is so crucial to have them on the backbone of document.
+        </p>
+      <p>
+        Hopefully that clarifies things... it did for me.
+        </p>
+
+
+      <!-- copy and paste as many sections as you want to add paragraphs -->
+  </section>
+</main>
+
