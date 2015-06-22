@@ -53,6 +53,10 @@
     margin-right: 0;
     margin-left: 39%;
     }
+
+    p {
+        font-family: "HelveticaNeue-Light", "Helvetica";
+    }
     
     .welcome {
         font-family: "Helvetica";
