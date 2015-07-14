@@ -33,7 +33,12 @@
         The #map method is one such “collection-transformation” operation. It will transform one collection into another collection. In this case, #map always returns an array. The reason for that is because it is a defined #enumerable. When using the class Enumerable, the class must define an instance of `each` which is the crux of the Enumerable class. The objects that fall within are tasked with various collection behaviors (as mentioned above).
     </p>
     <p>
-      So getting back to the #map method, perhaps it makes more sense now why it is considered the ‘transformation’ operation. As it will return the exact same input it received, except, as an array. It won’t change the positions, or sizing, or even the font. It essentially just… maps it. It’s useful because you can call #map and run it through a block, because #map takes blocks as an argument. You can then call another method on your #map block to return a new array. For example I can call the (.upcase) method (an easy example to understand) with “.map(&:upcase)” on a collection of data (a set of street addresses for example) and map will iterate through each name and return an array, then #map will call the .upcase method which would ‘transform’ the data into all capital letters. There’s countless other things that #map can do, but I hope this brief introduction made sense. Thanks for reading!
+      So getting back to the #map method, perhaps it makes more sense now why it is considered the ‘transformation’ operation. As it will return the exact same input it received, except, as an array. It won’t change the positions, or sizing, or even the font. It essentially just… maps it. It’s useful because you can call #map and run it through a block, because #map takes blocks as an argument. You can then call another method on your #map block to return a new array. For example I can call the (.upcase) method (an easy example to understand) with:
+      </p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #333333">.</span>map(<span style="color: #333333">&amp;</span><span style="color: #AA6600">:join</span>)
+</pre></div>
+<p>
+        A collection of data (a set of street addresses for example) and map will iterate through each name and return an array, then #map will call the .upcase method which would ‘transform’ the data into all capital letters. There’s countless other things that #map can do, but I hope this brief introduction made sense. Thanks for reading!
     </p>
     
 
