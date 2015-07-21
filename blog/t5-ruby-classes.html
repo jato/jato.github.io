@@ -35,7 +35,6 @@
     </pre></div></div>
 
     <p>
-        The #map method is one such “collection-transformation” operation. It will transform one collection into another collection. In this case, #map always returns an array. The reason for that is because it is a defined #enumerable. When using the class Enumerable, the class must define an instance of `each` which is the crux of the Enumerable class. The objects that fall within are tasked with various collection behaviors (as mentioned above).
     </p>
     <p>
       Inside the class, we can place our variables. For our purposes, we will most likely start off with local variables and instance variables. Local variables are defined in the method and belong to that method, they will not be accessible outside. An instance variable however (denoted with the @sign) is available across methods and also subject to change between objects.  
@@ -51,8 +50,17 @@
 
 
     <p>
-        When working with instance variables
+        When working with instance variables, it’s important to remember that they belong to objects once the objects are created using the class. Each object has individual attributes and does not share any value with other objects. While accessible within the class using the @ operator, to access them outside the class we would use a set of public methods called the accessor methods. If you use attr_ methods within your class, it would create variable methods for you use to use anywhere else with the @ symbol. For read only, you use “attr_reader”, write only would be “attr_writer”, and finally “attr_accessor” would allow for both functions. 
+
     </p>
+
+    <p>
+    So, using the sample code above, we initialized a method that takes two arguments, breed and lives. Let’s say we are categorizing a new species of feline, and we want to compile the data of their breed and how many lives they have (I know that’s not scientifically accurate, but it was what came to my mind first). We can call on our ‘Cat’ class by typing “Cat.new” and categorize a new find named Mittens by typing “mittens = Cat.new(Fluffling, 9)” and thereby create a new object (Mittens) that is a breed of (Fluffling) and happens to have (9) lives. 
+</p>
+<p>
+There’s so much more we can do and so much more I could write about when talking about Ruby’s classes. However, I think that’s enough for now. 
+</p>
+
     
 
 
