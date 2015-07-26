@@ -5,84 +5,93 @@
   background-image:    -moz-linear-gradient(top, #ffffff, #999999);
   background-image:      -o-linear-gradient(top, #ffffff, #999999);
   background-image:         linear-gradient(to bottom, #ffffff, #999999);
-    }*/
+}*/
 
-    h1 {
-        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
-   font-weight: 300;
-        text-align: center;
-        
-    }
-    
-    h2 {
-        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
-   font-weight: 300;
-        text-align: center;
-
-    }
-    
-    a {
-        color: black;
-        text-decoration: none;
-    }
-    
-    a:visited {
-        color: purple;
-    }
-    
-    a:hover {
-        color: red;
-    }
-    
-    .headlink {
-        color: black;
-        text-decoration: none;
-        font-family: "Helvetica";
-        font-weight: 200;
-        margin-left: auto;
-        margin-right: auto;
-        /*padding: 75px;*/
-    }
-
-    
-
-    
-    li {
-        text-align: center;
-        display: inline;
-        padding: 8em;
-    }
-    
-    .welcome {
-        font-family: "Helvetica";
-        font-weight: 200;
-        margin-left: 100px;
-        margin-right: 100px;
-        text-align: center;
-    }
-    
-    .contact {
-        font-family:"Helvetica";
-        color: red;
-        font-weight: 300;
-        text-align: center;
-        top: 0px;
-        bottom: 100px;
-        padding-top: 2em;
-    }
-    .image {
-        text-align:center;
-    }
-    .twitter img {
-    background-image:url(https://www.twitter.com/jato);
+h1 {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
+font-weight: 300;
     text-align: center;
-    width: 5%;
-    display: block;
-    margin: auto;
-    }
-    .hrgrad {
-        border: 0;
-        height: 2px;
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    
+}
 
-    }
+h2 {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
+font-weight: 300;
+    text-align: center;
+
+}
+
+nav {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    
+}
+
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover {
+    color: red;
+}
+
+.headlink {
+    color: black;
+    text-decoration: none;
+    font-family: "Helvetica";
+    font-weight: 200;
+    margin-left: auto;
+    margin-right: auto;
+    /*padding: 75px;*/
+}
+
+
+
+
+li {
+    text-align: center;
+    display: inline;
+    padding: 8em;
+}
+
+.welcome {
+    font-family: "Helvetica";
+    font-weight: 200;
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+}
+
+.contact {
+    font-family:"Helvetica";
+    color: red;
+    font-weight: 300;
+    text-align: center;
+    top: 0px;
+    bottom: 100px;
+    padding-top: 2em;
+}
+.image {
+    text-align:center;
+}
+.twitter img {
+background-image:url(https://www.twitter.com/jato);
+text-align: center;
+width: 5%;
+display: block;
+margin: auto;
+}
+.hrgrad {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+
+}
