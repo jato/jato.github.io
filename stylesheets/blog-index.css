@@ -60,6 +60,17 @@
         font-family: "HelveticaNeue-Light", "Helvetica";
 
     }
+
+    section {
+        display: block;
+        width: 60%;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica";
+        font-weight: 300;
+        margin: auto;
+        text-align: center;
+       /* background-color: lightgray; */
+
+    }
     
     .welcome {
         font-family: "Helvetica";
