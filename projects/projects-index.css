@@ -1,0 +1,118 @@
+/*body {
+  background-color: #ffffff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#999999));
+  background-image: -webkit-linear-gradient(top, #ffffff, #999999);
+  background-image:    -moz-linear-gradient(top, #ffffff, #999999);
+  background-image:      -o-linear-gradient(top, #ffffff, #999999);
+  background-image:         linear-gradient(to bottom, #ffffff, #999999);
+    }*/
+
+	h1 {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
+   font-weight: 300;
+        text-align: center;
+        
+    }
+    
+    h2 {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica";
+   font-weight: 300;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    h3 {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
+   font-weight: 200;
+        text-align: center;
+        padding-right: 2em;
+    }
+    
+    a {
+        color: black;
+        text-decoration: none;
+    }
+    
+    a:visited {
+        color: purple;
+    }
+    
+    a:hover {
+        color: red;
+    }
+    
+    .headlink {
+        color: black;
+        text-decoration: none;
+        font-family: "Helvetica";
+        font-weight: 200;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 75px;
+    }
+    
+    li {
+        display: inline;
+        padding: 75px;
+    }
+
+    p {
+        font-family: "HelveticaNeue-Light", "Helvetica";
+
+    }
+
+    section {
+        display: block;
+        width: 60%;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica";
+        font-weight: 300;
+        margin: auto;
+        text-align: center;
+       /* background-color: lightgray; */
+
+    }
+    
+    .welcome {
+        font-family: "Helvetica";
+        font-weight: 200;
+        margin-left: 100px;
+        margin-right: 100px;
+        text-align: center;
+    }
+    
+    .contact {
+        font-family:"Helvetica";
+        color: red;
+        font-weight: 300;
+        text-align: center;
+        top: 0px;
+        bottom: 100px;
+    }
+    .image {
+        text-align:center;
+    }
+    .headfoot {
+        font-family:"Helvetica";
+        text-align: center;
+    }
+    .twitter img {
+    background-image:url(https://www.twitter.com/jato);
+    text-align: center;
+    width: 5%;
+    display: block;
+    margin: auto;
+    }
+
+    .fall img {
+        text-align: center;
+        width: 20%;
+        display: block;
+        margin: auto;
+    }
+    .hrgrad {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+
+    }
+    
