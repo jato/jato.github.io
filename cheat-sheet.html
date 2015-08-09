@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="stylesheets/blog-index.css"/>
+		<title>|jato.blog|</title>
+
+	</head>
+	<body>
+	    <header>
+	        <h1>Programmer's Little Helper</h1>
+	        <div class="headfoot">
+	        <h3>Sometimes we need to hit CTRL+R </h3>
+	        </div>
+	    </header>
+	    <hr class="hrgrad">
+        <div class="fall">
+            <img src="http://demosthenes.info/assets/images/leaf7.png" alt="Falling"/>
+        </div>
+        <h2>
+            <p>Git</p>
+        </h2>
+            <!-- <h3>
+                <ol>
+                   
+
+
+                </ol>
+            </h3> -->
+        <article>
+<!--             <h3>How to make changes</h3>
+ -->            <p>How to make changes in a Git repo</p>
+
+        <details>
+            <summary><code> git status</code></summary>
+            <p>Lists all new or modified files to be committed</p>
+        </details>
+
+        <details>
+            <summary><code> git add [file]</code></summary>
+            <p>Snapshots the file in preparation for versioning</p>
+        </details>
+
+        <details>
+            <summary><code> git reset [file]</code></summary>
+            <p>Unstages the file, but preserve its contents</p>
+        </details>
+
+        <details>
+            <summary><code> git diff</code></summary>
+            <p>Shows file differences not yet staged</p>
+        </details>
+
+        <details>
+            <summary><code> git diff --staged</code></summary>
+            <p>Shows file differences between staging and the last file version</p>
+        </details>
+
+        <details>
+            <summary><code> git commit -m "[descriptive message]"</code></summary>
+            <p>Records file snapshots permanently in version history</p>
+        </details>
+      </article>
+
+        <hr class="hrgrad">
+	    <h2>
+	        <p>Ruby</p>
+        </h2>
+
+	   <article>
+        <h2></h2>
+            <p></p>
+
+        <details>
+            <summary><code> # Comment text</code></summary>
+            <p>Comments the text, Ruby will ignore everything that is marked with #.</p>
+        </details>
+
+        <details>
+            <summary><code> variable = some_value</code></summary>
+            <p>Declare a variable.</p>
+        </details>
+
+        <details>
+            <summary><code> puts text</code></summary>
+            <p>Prints the argument to the console with new line.</p>
+        </details>
+
+        <details>
+            <summary><code> object.method(arguments)</code></summary>
+            <p>Calling a method on object that accecpts an argument. It may also not require an argument.</p>
+        </details>
+
+        <details>
+            <summary><code> def name(parameter)<br>method body<br>end</code>
+            </summary>
+            <p>This defines a new method that accepts a parameter.</p>
+        </details>
+
+        <details>
+            <summary><code>CONSTANT = some_value</code></summary>
+            <p>Like a variable but has a known value that should never change and always refer to the same value.</p>
+        </details>
+
+        <details>
+            <summary><code>"A string and and an #{expression}"</code>
+            </summary>
+            <p>Combines a string with a variable or Ruby expression.</p>
+        </details>
+
+        <details>
+            <summary><code>string[position]</code>
+            </summary>
+            <p>Access the character the given position. Index is set at 0.</p>
+        </details>
+
+        <details>
+            <summary><code>array[position]</code>
+            </summary>
+            <p>Access the position in an array, Indexed at 0.</p>
+        </details>
+
+        <details>
+            <summary><code>array << element</code>
+            </summary>
+            <p>This pushes element into the bottom of the array.</p>
+        </details>
+
+        <details>
+            <summary><code>array.each do |e| .. end</code>
+            </summary>
+            <p>Iterates over the array. Each element is the assigned the element 'e'.</p>
+        </details>
+
+        <details>
+            <summary><code>{key => value}</code>
+            </summary>
+            <p>Key value pair in hashes. Easy memory trick. Think of a grocery list, the fish is the key and salmon is the hash (or value assigned).</p>
+        </details>
+
+      </article>
+
+	    <hr class="hrgrad">
+	    <h2>
+	        <p>JavaScript</p>
+        </h2>
+        <article>
+        <h2></h2>
+            <p></p>
+
+        <details>
+            <summary><code> // Comment text</code></summary>
+            <p>Comments the text, JavaScript will ignore everything that is marked with //.</p>
+        </details>
+
+        <details>
+            <summary><code> console.log(text)</code></summary>
+            <p>Prints 'text' to the console.</p>
+        </details>
+
+        <details>
+            <summary><code> for ([initialization]; [condition]; [final-expression]) </code></summary>
+            <p>The for loop syntax. Useful for iteration.</p>
+        </details>
+
+        <details>
+            <summary><code> for (variable in object) { .. }</code></summary>
+            <p>For..in statement iterates over the enumerable properties of an object.</p>
+        </details>
+
+        
+        <details>
+            <summary><code>var i = x</code></summary>
+            <p>Declare a variable with the 'var' and set it equal x.</p>
+        </details>
+
+        <details>
+            <summary><code>function greet(name) { .. }</code>
+            </summary>
+            <p>Create a function. Functions are built for a singular piece of recurring logic. Accepts argument.</p>
+        </details>
+
+        <details>
+            <summary><code>var obj ={}</code>
+            </summary>
+            <p>JavaScript objects, similiar to Ruby Hashes..see above</p>
+        </details>
+
+        <details>
+            <summary><code>if (condition == condition) { ..} else { .. };</code>
+            </summary>
+            <p>If/else statement syntax. If conditions are met the code executes else moves on to next argument.</p>
+        </details>
+
+        <details>
+            <summary><code>condition ? example1 : example2</code>
+            </summary>
+            <p>Ternary operator. Operates the same as an if/else statement with boolean operator.</p>
+        </details>
+
+        <details>
+            <summary><code>Math.random();</code>
+            </summary>
+            <p>Generates a random number from 0 to 1. Math.floor will round integer down. Math.ceil will round up.</p>
+        </details>
+
+        
+      </article>
+            <hr class="hrgrad">
+	        <div class="twitter">
+	            <a href="https://www.twitter.com/jato">
+	            <img src="http://www.kazarin.me/twitter_icon_black.png" />
+	            </a>
+	        </div>
+	</body>
+</html>
