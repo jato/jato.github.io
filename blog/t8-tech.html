@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+  <title>|jato.blog|</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="blog-style.css">
+</head>
+
+<main>
+  <h1>Regular Expressions</h1>
+  <h2>Getting Fancy</h2>
+  <h4>August 10, 2015</h4>
+
+  <section>
+    <p>
+       For this blog, I will attempt to learn about and explain regular expressions. I have not yet had the opportunity to implement any into code, so this should be fun (mild sarcasm). 
+
+ 
+
+    </p>
+    <p>
+      A regular expression (also known as regex or regexp) is a specific text string used for describing a search pattern. It’s similar to the “wildcard” notation that we’ve seen often such as:
+       <code>*.mp3</code>
+      This would call a search in your directory with the ‘splat’ operator (or asterisk) for all files that contain the ‘.mp3’ extension.  The splat works like a wildcard. Now a regex expression would look like this:
+      <code>.*\.mp3$</code>
+      It can do much more than a simple splat can. For example this:
+      <code>\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b</code>
+      can run a universal search for an email address, despite the numerous characters and numbers that typically comprise an email address.
+
+
+    </p>
+    <p>
+      They can do much more than that, including pattern matching, and find and replace operations. They are implemented into pretty much every major language including Ruby and JavaScript. 
+
+
+    </p>
+    <p>
+    <!-- <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">meMyself = {
+   height: 0,
+   weight: 0,
+   passTest: <span style="font-weight: bold">true</span>
+}
+</pre></div>
+
+
+ 
+    </p>
+
+
+    <p>
+    </p> -->
+    <p>
+      But how exactly do they work?
+
+  
+      </p>
+      <p>
+      Have you ever opened an image in a web browser and just got a bunch gibberish with weird symbols and such? That’s sort of like the metadata, a series of characters and strings arranged in a particular order to initiate a literal meaning. A regex translates each character into a metacharacter, a character that has special meaning to a computer program. The metacharacter is an underlay of nearly every string, array, and character we type. So a regex can search within these metacharacters (called atoms) and look for a specific pattern, when it finds the pattern it returns the result. 
+      </p>
+
+
+
+    <p>
+        Another example of a useful regex search would be for different dialect differences such as in the word “color” or “colour”. One could type colo[u]r and the regex would find both variants of the word used (also grey and gray). Search engines also have this type of function implemented natively.  
+
+
+
+
+    </p>
+
+    <!-- <p>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">function</span> dog (name, breed, age) {
+  <span style="font-weight: bold">this</span>.name = name;
+  <span style="font-weight: bold">this</span>.breed = breed;
+  <span style="font-weight: bold">this</span>.age = age;
+}
+</pre></div>
+
+ 
+</p> -->
+<p>
+They can range from an extremely simple and easy to remember syntax such as the example above, or extremely complex and long expressions that will take a few tries to get right. 
+</p>
+
+<p>
+The purpose of this blog post serves primarily as an introduction, I won’t get into the nitty gritty exploration of the syntax, but it should be noted as an extremely useful tool for any programmer. 
+</p>
+
+    
+
+
+  
+  </section>
+<hr class = "hrgrad">
+<h3><a href="https://jato.github.io">Home</a>
+</main>
