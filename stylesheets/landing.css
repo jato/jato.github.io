@@ -6,6 +6,13 @@
   font-family: 'entypo', sans-serif;
 }
 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+   @font-face {
+      font-family: 'entypo';
+      src: url('path to entypo.svg#entypo') format('svg');
+   }
+}
+
 html, body {
     margin: 0;
     width: 100%;
