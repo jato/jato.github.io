@@ -22,7 +22,7 @@ html, body {
 .jato {
   display: -webkit-flex;
   font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
-  padding-top: 2em;
+  padding-top: 0em;
   padding-left: 22px;
   display: flex;
   width: 100%;
