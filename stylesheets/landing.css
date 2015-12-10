@@ -14,6 +14,7 @@ html, body {
 
 .jato {
     display: -webkit-flex;
+    font-family: 'Raleway Dots', sans-serif;
     padding-top: 2em;
     padding-left: 22px;
     display: flex;
