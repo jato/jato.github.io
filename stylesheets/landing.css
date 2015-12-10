@@ -7,33 +7,33 @@
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-   @font-face {
-      font-family: 'entypo';
-      src: url('path to entypo.svg#entypo') format('svg');
-   }
+ @font-face {
+  font-family: 'entypo';
+  src: url('path to entypo.svg#entypo') format('svg');
+}
 }
 
 html, body {
-    margin: 0;
-    width: 100%;
-    background-color: #131f43;
+  margin: 0;
+  width: 100%;
+  background-color: #131f43;
 }
 
 .jato {
-    display: -webkit-flex;
-    font-family: 'Raleway Dots', sans-serif;
-    padding-top: 2em;
-    padding-left: 22px;
-    display: flex;
-    width: 100%;
-    color: white;
-    font-size: 5em;
-    -webkit-flex-direction: row /* works with row or column */
-    flex-direction: row;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
+  display: -webkit-flex;
+  font-family: 'Raleway Dots', sans-serif;
+  padding-top: 2em;
+  padding-left: 22px;
+  display: flex;
+  width: 100%;
+  color: white;
+  font-size: 5em;
+  -webkit-flex-direction: row /* works with row or column */
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 
 a {
@@ -48,7 +48,7 @@ section #services h2 {
   margin: 80px 0px 40px;
   color: #fff;
   font-size: 2.4em;
-  font-family: 'Raleway Dots', sans-serif;
+  font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
   text-transform: uppercase;
   text-align: center;
 }
@@ -83,4 +83,22 @@ section #services li span {
   text-transform: uppercase;
   font-size: 1.2em;
   text-align: center;
+}
+
+footer {
+  display: -webkit-flex;
+  font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
+  padding-top: 2em;
+  padding-left: 22px;
+  display: flex;
+  width: 100%;
+  color: white;
+  font-size: 1.5em;
+  -webkit-flex-direction: row /* works with row or column */
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+
 }

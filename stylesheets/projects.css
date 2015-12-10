@@ -1,12 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway+Dots);
+
+
 h1 {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
+    font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica'; 
     font-weight: 300;
     text-align: center;
 
 }
 
 h2 {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
+    font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
     font-weight: 300;
     text-align: center;
 
@@ -41,16 +44,17 @@ h2 {
     font-size: 2em;
 }
 
+
+
 .pr-container a {
     text-decoration: none;
     color: white;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica";
+    font-family: 'Raleway Dots', Helvetica;
 }
 
 .pr-container a:hover {
     text-decoration: none;
     color: red;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica";
 }
 
 .jato {
