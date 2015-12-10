@@ -5,6 +5,7 @@
 [class*="entypo-"]:before {
   font-family: 'entypo', sans-serif;
 }
+/*Note on font import: won't render properly if linked through https protocol*/
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
  @font-face {
@@ -34,6 +35,7 @@ html, body {
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+  
 }
 
 a {
