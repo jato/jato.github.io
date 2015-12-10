@@ -15,6 +15,13 @@ h2 {
 
 }
 
+i {
+    font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
+    font-size: 0.5em;
+    color: white;
+
+}
+
 .container {
     position: absolute;
     top: 0px;
