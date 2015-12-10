@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+  <title>James's Blog</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="blog-style.css">
+</head>
+
+<main>
+  <h1>Defining Classes in Ruby</h1>
+  <h2>Class is in session...</h2>
+  <h4>July 19, 2015</h4>
+
+  <section>
+    <p>
+      Before getting into classes in Ruby, I will take a brief minute to go over one of the most important aspects of Ruby’s design — Object-oriented programming (OOP). Before object orientation, traditional programming would involve a human writing a list of instructions for a machine to follow. Object orientation is similar but based on the different human premise that we see things and interact with them differently; much more… tangibly. We see things, places, and… objects. We interact with these objects and perform functions with these objects. The objects can maintain relationships with other objects. They have parents and children, and like such, can inherit characteristics of their parent object. So when programming, we can model the world based off of strings of text instructions, or, we could model it off of the objects and how we perceive them. 
+
+    </p>
+    <p>
+      Now, a class, is the “blueprint” from witch individual objects are created. Inside the blueprint you can assign different values and data structures that create your new object. If I created a class “Phone” (note the capitalization) an instance of phone would be your iPhone or your Android phone. The sub-variables would be its functions, i.e., the phone has a camera, a glass capacitive display, and 3000mAh battery. What’s the point? Well, imagine you have a very large coding project that tracks a ton of different data points that you want to perform a consistent action. Are you going to write a bunch of instructions for each data point? That could be tedious and hazardous to your code. Just make a class that stores the data and instructions and then call it when you need it.
+
+    </p>
+    <p>
+      So, how do we make one of these ‘class’ things?
+
+
+
+    </p>
+    <p>
+    We define it! A class in Ruby always starts with the keyword ‘class’ followed by the name of the class that you want to create, e.g., Phone, Bills, Cards, etc. 
+ 
+    </p>
+
+    <div class="code"><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Phone</span>
+    <span style="color: #008800; font-weight: bold">end</span>
+    </pre></div></div>
+
+    <p>
+    </p>
+    <p>
+      Inside the class, we can place our variables. For our purposes, we will most likely start off with local variables and instance variables. Local variables are defined in the method and belong to that method, they will not be accessible outside. An instance variable however (denoted with the @sign) is available across methods and also subject to change between objects.  
+      </p>
+
+
+      <div class="code"><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Cat</span>
+   <span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">initialize</span>(breed, lives)
+      <span style="color: #3333BB">@breed</span> <span style="color: #333333">=</span> breed
+      <span style="color: #3333BB">@lives</span> <span style="color: #333333">=</span> lives
+  <span style="color: #008800; font-weight: bold">end</span>
+  </pre></div></div>
+
+
+    <p>
+        When working with instance variables, it’s important to remember that they belong to objects once the objects are created using the class. Each object has individual attributes and does not share any value with other objects. While accessible within the class using the @ operator, to access them outside the class we would use a set of public methods called the accessor methods. If you use attr_ methods within your class, it would create variable methods for you use to use anywhere else with the @ symbol. For read only, you use “attr_reader”, write only would be “attr_writer”, and finally “attr_accessor” would allow for both functions. 
+
+    </p>
+
+    <p>
+    So, using the sample code above, we initialized a method that takes two arguments, breed and lives. Let’s say we are categorizing a new species of feline, and we want to compile the data of their breed and how many lives they have (I know that’s not scientifically accurate, but it was what came to my mind first). We can call on our ‘Cat’ class by typing “Cat.new” and categorize a new find named Mittens by typing “mittens = Cat.new(Fluffling, 9)” and thereby create a new object (Mittens) that is a breed of (Fluffling) and happens to have (9) lives. 
+</p>
+<p>
+There’s so much more we can do and so much more I could write about when talking about Ruby’s classes. However, I think that’s enough for now. 
+</p>
+
+    
+
+
+  
+  </section>
+<hr class = "hrgrad">
+<h3><a href="https://jato.github.io">Home</a>
+</main>
