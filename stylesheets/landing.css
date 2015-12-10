@@ -10,7 +10,7 @@
  @font-face {
   font-family: 'entypo';
   src: url('path to entypo.svg#entypo') format('svg');
-}
+  }
 }
 
 html, body {
@@ -21,7 +21,7 @@ html, body {
 
 .jato {
   display: -webkit-flex;
-  font-family: 'Raleway Dots', sans-serif;
+  font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
   padding-top: 2em;
   padding-left: 22px;
   display: flex;
