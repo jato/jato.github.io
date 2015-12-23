@@ -21,14 +21,6 @@
       <ul id='services'>
         <h2>James Allen Brown</h2>
         <li>
-          <a href="https://www.facebook.com/thejamesbrown"><div class='entypo-facebook'></div></a>
-          <span>Facebook</span>
-        </li>
-        <li>
-          <a href="https://www.twitter.com/jato"><div class='entypo-twitter'></div></a>
-          <span>Twitter</span>
-        </li>
-        <li>
           <a href="https://www.github.com/jato"><div class='entypo-github'></div></a>
           <span>GitHub</span>
         </li>
@@ -36,9 +28,17 @@
           <a href="https://www.linkedin.com/in/jamesallenbrown"><div class='entypo-linkedin'></div></a>
           <span>LinkedIn</span>
         </li>
+        <li>
+          <a href="https://www.facebook.com/thejamesbrown"><div class='entypo-facebook'></div></a>
+          <span>Facebook</span>
+        </li>
+        <li>
+          <a href="https://www.twitter.com/jato"><div class='entypo-twitter'></div></a>
+          <span>Twitter</span>
+        </li>
       </ul>
     </section>
-    <a href="https:jato.github.io/projects"><footer>projects</footer></a>
+    <a id="proj-id" href="https://jato.github.io/projects"><footer><p>projects</p></footer></a>
   </body>
 </div>
 
@@ -52,8 +52,13 @@
     $("section #services h2").fadeIn(1500);
     $("section #services li").hide();
     $("section #services li").fadeIn(2000);
-    $("footer").hide();
-    $("footer").fadeIn(2000);
+    // $("footer").hide();
+    // $("footer").fadeIn(2000);
+    $("footer p").mouseover(function() {
+      $(this).animate({ color: '#f00'},500);
+    }).mouseout(function() {
+      $(this).animate({ color: '#ccc'},500);
+    });
 
 
   });
