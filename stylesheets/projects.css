@@ -1,3 +1,27 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway+Dots);
+
+
+h1 {
+    font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica'; 
+    font-weight: 300;
+    text-align: center;
+
+}
+
+h2 {
+    font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
+    font-weight: 300;
+    text-align: center;
+
+}
+
+i {
+    font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
+    font-size: 0.5em;
+    color: white;
+
+}
+
 .container {
     position: absolute;
     top: 0px;
@@ -25,6 +49,19 @@
     background-color: #131f43;
     text-align: center;
     font-size: 2em;
+}
+
+
+
+.pr-container a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Raleway Dots', Helvetica;
+}
+
+.pr-container a:hover {
+    text-decoration: none;
+    color: red;
 }
 
 .jato {
@@ -55,53 +92,6 @@
     height: auto;
 }
 
-
-
-h1 {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
-    font-weight: 300;
-    text-align: center;
-
-}
-
-h2 {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica"; 
-    font-weight: 300;
-    text-align: center;
-
-}
-
-a {
-    color: black;
-    text-decoration: none;
-}
-
-a:visited {
-    color: purple;
-}
-
-a:hover {
-    color: red;
-}
-
-.headlink {
-    color: black;
-    text-decoration: none;
-    font-family: "Helvetica";
-    font-weight: 200;
-    margin-left: auto;
-    margin-right: auto;
-    /*padding: 75px;*/
-}
-
-
-
-
-li {
-    text-align: center;
-    display: inline;
-    padding: 8em;
-}
 
 .welcome {
     font-family: "Helvetica";
