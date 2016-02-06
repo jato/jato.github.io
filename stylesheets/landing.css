@@ -105,23 +105,23 @@ footer {
   justify-content: center;
   color: white;
 
-  -webkit-animation: pulsate 3s ease-out;
-  -webkit-animation-iteration-count: infinite; 
-  opacity: 0.5;
+ /* -webkit-animation: pulsate 3s ease-out;
+  -webkit-animation-iteration-count: infinite; */
+  opacity: 0.75;
 
 }
 
 
 @-webkit-keyframes pulsate {
     0% { 
-        opacity: 0.5;
+        opacity: 0.3;
     }
     50% { 
-        opacity: 1.0;
+        opacity: 0.8;
         /*color: red;*/
     }
     100% { 
-        opacity: 0.5;
+        opacity: 0.3;
     }
 }
 
@@ -292,6 +292,7 @@ svg {
     text-decoration: none;
     color: white;
     font-family: 'Raleway', Helvetica;
+    opacity: 0.9;
 }
 
 .pr-container a:hover {
@@ -303,6 +304,7 @@ i {
     font-family: 'Raleway', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
     font-size: 0.5em;
     color: white;
+    opacity: 0.7;
 
 }
 
