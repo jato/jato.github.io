@@ -22,7 +22,7 @@ i {
 
 }
 
-.container {
+/*.container {
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -43,7 +43,7 @@ i {
     -webkit-align-content: center;
     align-content: center;
 
-}
+}*/
 
 .pr-container {
     background-color: #131f43;
@@ -64,20 +64,20 @@ i {
     color: red;
 }
 
-.jato {
+/*.jato {
     display: -webkit-flex;
     padding-top: 2em;
     display: flex;
     width: 100%;
     color: white;
     font-size: 5em;
-    -webkit-flex-direction: row /* works with row or column */
+    -webkit-flex-direction: row /* works with row or column *
     flex-direction: row;
     -webkit-align-items: center;
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center;
-}
+}*/
 
 .coming-soon1 {
     color: black;

@@ -11,34 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-
-<div class="container">
-  <body class="mainbody">
-    <div class="jato">
-      <p>jato</p>  
-    </div>
-    <section>
-      <ul id='services'>
-        <h2>James Allen Brown</h2>
-        <li>
-          <a href="https://www.github.com/jato"><div class='entypo-github'></div></a>
-          <span>GitHub</span>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/jamesallenbrown"><div class='entypo-linkedin'></div></a>
-          <span>LinkedIn</span>
-        </li>
-        <li>
-          <a href="https://www.facebook.com/thejamesbrown"><div class='entypo-facebook'></div></a>
-          <span>Facebook</span>
-        </li>
-        <li>
-          <a href="https://www.twitter.com/jato"><div class='entypo-twitter'></div></a>
-          <span>Twitter</span>
-        </li>
-      </ul>
-    </section>
-    <a id="proj-id" href="https://jato.github.io/projects"><footer><p>projects</p></footer></a>
 <!-- CLOUDS ANIMATION TEST-->
 <div class="clouds"> 
 
@@ -84,7 +56,67 @@
 </div>
 
 <!-- END CLOUDS -->
-  </body>
+<div class="container">
+  <body class="mainbody">
+    <div class="jato">
+      <p>jato</p>  
+    </div>
+    <section>
+      <ul id='services'>
+        <h2>James Allen Brown</h2>
+        <li>
+          <a href="https://www.github.com/jato"><div class='entypo-github'></div></a>
+          <span>GitHub</span>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/jamesallenbrown"><div class='entypo-linkedin'></div></a>
+          <span>LinkedIn</span>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/thejamesbrown"><div class='entypo-facebook'></div></a>
+          <span>Facebook</span>
+        </li>
+        <li>
+          <a href="https://www.twitter.com/jato"><div class='entypo-twitter'></div></a>
+          <span>Twitter</span>
+        </li>
+      </ul>
+    </section>
+    <a id="proj-id" href="https://jato.github.io/projects"><footer><p>projects</p></footer></a>
+
+  
+
+<div id="content" style="display:none">
+  <header>
+    <h1 class="jato"></h1>
+      <div class="headfoot">
+      </div>
+  </header>
+  <div class="pr-container">
+    <hr class="hrgrad">
+      <h3>
+        <ol>
+          <p><a href="https://github.com/jato/ningaloo">The Ningaloo Project</a></p>
+          <p><i>Modernizing data collection for 4 of the 6 most endangered sea turtle species in the world.</i></p><p><i>Meteor.js | iOS via Cordova</i></p>
+          <div class="ningaloo-images">
+            <img src="resources/mobile-app.jpg">
+            <img src="resources/desktop-app.jpg">
+          </div>
+          <p><a href="http://pacifica.herokuapp.com">Pacifica Coffee</a></p>
+          <p><i>Oregon based coffee roasting company serving the best the area has to offer.</i></p><p><i>Ruby/Ruby-on-Rails</i></p>
+          <div class="ningaloo-images">
+            <img src="resources/Pacifica_shop_home.png">
+            <!-- <img src="../resources/Pacifica_shop_profile.png"> -->
+          </div>
+          <p><i>Coming Soon</i></p>
+          <p><a href="https://github.com/jato/hearth">Hearth.io</a></p>
+      <p><i>Thanks for looking!</i></p>
+    </ol>
+  </h3>
+</div>
+
+<!-- END PROJECTS -->
+</body>
 </div>
 
 
@@ -108,7 +140,26 @@
     });
 
 
-  });
+    $('#proj-id').click(function(e) {
+    e.preventDefault(); 
+
+      $('#content').toggle(700);
+
+      $('html, body').animate({scrollTop:$('#content').position().top}, 'slow');
+      
+    // var pageToLoad = $(this).attr('href'); // gets the href of the clicked link
+    // $('#content').load(pageToLoad); // loads the remote page into the content div without refresh
+
+    // $.ajax({ 
+    //  url: "projects/project_index.html", dataType: "html" 
+    // }).done(function( responseHtml ) {
+    //  $("#content").html(responseHtml);
+    // });
+
+    // $('head').append('<link rel="stylesheet" type="text/css" href="stylesheets/projects.css"/>');
+    });
+});
+
  
 </script>
 
