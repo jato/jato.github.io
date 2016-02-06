@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway+Dots);
+@import url(http://fonts.googleapis.com/css?family=Raleway);
 @import url(http://fonts.googleapis.com/css?family=Advent+Pro:400,200,700);
 @import url(http://weloveiconfonts.com/api/?family=entypo);
 /* entypo */
@@ -89,8 +90,8 @@ section #services li span {
 
 footer {
   display: -webkit-flex;
-  font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
-  padding-top: 2em;
+  font-family: 'Raleway', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
+  padding-top: 1.4em;
   padding-left: 22px;
   padding-bottom: 22px;
   display: flex;
@@ -103,6 +104,25 @@ footer {
   -webkit-justify-content: center;
   justify-content: center;
   color: white;
+
+  -webkit-animation: pulsate 3s ease-out;
+  -webkit-animation-iteration-count: infinite; 
+  opacity: 0.5;
+
+}
+
+
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.5;
+    }
+    50% { 
+        opacity: 1.0;
+        /*color: red;*/
+    }
+    100% { 
+        opacity: 0.5;
+    }
 }
 
 /*Animation testing*/
@@ -253,4 +273,42 @@ svg {
     -moz-transform: translateX(-1000px);
     transform: translateX(-1000px);
   }
+}
+
+/*PROJECTS CSS*/
+
+.ningaloo-images img {
+    width: 100%; /* you can use % */
+    height: auto;
+}
+
+.pr-container {
+    background-color: #131f43;
+    text-align: center;
+    font-size: 2em;
+}
+
+.pr-container a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Raleway', Helvetica;
+}
+
+.pr-container a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+i {
+    font-family: 'Raleway', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
+    font-size: 0.5em;
+    color: white;
+
+}
+
+.hrgrad {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+
 }
