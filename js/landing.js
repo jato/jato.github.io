@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
     $(".jato").hide();  
     $(".jato").fadeIn(3000);  
     $("section #services h2").hide();
@@ -10,15 +10,15 @@ $(document).ready(function(){
     // $("footer").fadeIn(2000);
     $("footer p").mouseover(function() {
       $(this).animate({ color: '#f00'},500);
-    }).mouseout(function() {
+  }).mouseout(function() {
       $(this).animate({ color: '#ccc'},500);
-    });
+  });
 
 
-    $('#proj-id').click(function(e) {
+  $('#proj-id').click(function(e) {
     e.preventDefault(); 
 
-      $('#content').fadeToggle(900, 'linear');
+    $('#content').fadeToggle(900, 'linear');
 
       $('html, body').animate({scrollTop:$('#content').position().top}, 'slow');
       
@@ -33,4 +33,19 @@ $(document).ready(function(){
 
     // $('head').append('<link rel="stylesheet" type="text/css" href="stylesheets/projects.css"/>');
     });
+
+        // $('a[href*=#]:not([href=#])').click(function() {
+        //     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+        //         || location.hostname == this.hostname) {
+
+        //         var target = $(this.hash);
+        //     target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        //     if (target.length) {
+        //        $('html,body').animate({
+        //            scrollTop: target.offset().top
+        //        }, 1000);
+        //        return false;
+        //        }
+        //   }
+        // });
 });
