@@ -96,7 +96,7 @@ section #services li span {
 footer {
   display: -webkit-flex;
   font-family: 'Raleway', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
-  padding-top: 1.4em;
+  padding-top: 0.8em;
   /*padding-left: 22px;*/
   padding-bottom: 22px;
   display: flex;
