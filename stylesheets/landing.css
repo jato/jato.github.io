@@ -21,6 +21,22 @@ html, body {
   background-color: #131f43;
 }
 
+/*.full-page {
+  background-color: #131f43;
+   background: -webkit-linear-gradient(#7b85ad,#131f43);  
+    background: -moz-linear-gradient(#7b85ad,#131f43);  
+    background: -o-linear-gradient(#7b85ad,#131f43);  
+    background: linear-gradient(#7b85ad,#131f43);  
+
+    -webkit-transition: background 3s ease-out;  
+    -moz-transition: background 3s ease-out;  
+    -o-transition: background 3s ease-out;  
+    transition: background 3s ease-out;  
+
+    background-size: cover;  
+  
+}*/
+
 .jato {
   display: -webkit-flex;
   font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
@@ -40,7 +56,7 @@ html, body {
 }
 
 a {
-  text-decoration: none;
+  /*text-decoration: none;*/
 }
 
 ul, ol {
@@ -157,7 +173,6 @@ svg {
  * Clouds
  */
 .clouds {
-  /*background-color: red;*/
   position: absolute;
   top: 0;
   left: 0;
@@ -169,7 +184,7 @@ svg {
 
 .cloud {
   position: absolute;
-  top: 20%;
+  top: 3.9%;
   width: 300px;
   right: 0;
   opacity: 1;
@@ -281,19 +296,23 @@ svg {
 
 /*PROJECTS CSS*/
 
+#proj-id {
+  text-decoration: none;
+}
+
 .ningaloo-images img {
     width: 100%; /* you can use % */
     height: auto;
 }
 
 .pr-container {
-    background-color: #131f43;
+    /*background-color: #131f43;*/
     text-align: center;
     font-size: 2em;
 }
 
 .pr-container a {
-    text-decoration: none;
+    /*text-decoration: none;*/
     color: white;
     font-family: 'Raleway', Helvetica;
     opacity: 0.9;
@@ -328,5 +347,6 @@ p .tech-used {
 }
 
 #scroll-top {
+  text-decoration: none;
   color: red;
 }
