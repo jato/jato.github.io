@@ -48,4 +48,11 @@ $(document).ready(function(){
         //        }
         //   }
         // });
+
+    // Slide out Menu
+    $('.nav-side .nav-toggle').on('click', function(e) {
+        e.preventDefault();
+        $(this).parent().toggleClass('nav-open');
+    });
 });
+

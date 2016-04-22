@@ -350,3 +350,61 @@ p .tech-used {
   text-decoration: none;
   color: red;
 }
+
+/*Slide out Menu*/
+.nav-side {
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 250px;
+  /*background-color: #add8e6;*/
+  box-sizing: border-box;
+  padding: 20px;
+  color: #fff;
+  margin-left: -250px;
+  transition: all 200ms ease-in-out;
+}
+
+.nav-toggle {
+  position: absolute;
+  right: -40px;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  line-height: 40px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-bottom-right-radius: 10px;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, .1);
+}
+
+.nav-side.nav-open {
+  margin-left: 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+.nav-toggle:before {
+  content: "\2709";
+  font-size: 2em;
+  font-weight: 1000;
+  color: #fff;
+}
+
+.nav-side.nav-open .nav-toggle:before{
+  content: "\2190";
+}
+
+.contact-form a {
+  box-sizing: border-box;
+  padding: 4px;
+  font-family: 'Raleway Dots', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
+  text-decoration: none;
+  font-size: 2em;
+  color: #fff;
+  border: 1px solid white;
+}
