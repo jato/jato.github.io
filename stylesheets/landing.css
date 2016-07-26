@@ -31,6 +31,16 @@ html, body {
   }
 }
 
+@-webkit-keyframes pulse {
+  0% {
+    background-color: #131f43;
+  }
+
+  100% {
+    background-color: #71acd6;
+  }
+}
+
 /*.full-page {
   background-color: #131f43;
    background: -webkit-linear-gradient(#7b85ad,#131f43);  
@@ -434,7 +444,7 @@ body:before {
    background-color: rgba(0, 0, 0, 0.0);
    margin-left: 40%;
    margin-right: 40%;
-   padding: .3em .1em;
+   /*padding: .3em .1em;*/
    -webkit-transition: opacity 1s ease-in-out;
    -moz-transition: opacity 1s ease-in-out;
    -ms-transition: opacity 1s ease-in-out;
