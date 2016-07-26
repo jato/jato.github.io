@@ -321,7 +321,7 @@ svg {
 }
 
 .ningaloo-images img {
-    width: 100%; /* you can use % */
+    width: 100%; 
     height: auto;
 }
 
@@ -333,7 +333,7 @@ svg {
 }
 
 .pr-container a {
-    /*text-decoration: none;*/
+    text-decoration: none;
     color: white;
     font-family: 'Raleway', Helvetica;
     opacity: 0.9;
@@ -346,8 +346,15 @@ svg {
 
 i {
     font-family: 'Raleway', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
-    font-size: 0.5em;
+    font-size: 0.4em;
     color: white;
+    opacity: 0.7;
+}
+
+.description {
+    font-family: 'Raleway', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica';
+    font-size: 0.5em;
+    color: #131f43;
     opacity: 0.7;
 }
 
@@ -363,8 +370,11 @@ p .tech-used {
 }
 
 .proj-src-ol p {
-  margin-bottom: 0em;
-  margin-top: 0.6em;
+  /*margin-bottom: 0em;*/
+  /*margin-top: 0.6em;*/
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 0.6em !important;
 }
 
 #scroll-top {
@@ -398,9 +408,9 @@ p .tech-used {
   text-decoration: none;
   line-height: 40px;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  /*background-color: rgba(0, 0, 0, 0.5);*/
   border-bottom-right-radius: 10px;
-  box-shadow: 1px 0 3px rgba(0, 0, 0, .1);
+  /*box-shadow: 1px 0 3px rgba(0, 0, 0, .1);*/
 }
 
 .nav-side.nav-open {
@@ -409,6 +419,7 @@ p .tech-used {
   background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
 }
+
 .nav-toggle:before {
   /*content: "\2709";*/
   content: "\2609";
@@ -461,3 +472,17 @@ body:before {
  }
 
 /*end scroll arrow*/
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 500px){
+  .proj-src-ol p {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  i.tech-used {
+    font-size: 0.3em;
+  }
+
+}

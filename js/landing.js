@@ -60,11 +60,15 @@ $(window).scroll(function() {
     offset = $(this).scrollTop();
     if (offset > 100) {
         $("body:not(.scrolled)").addClass("scrolled");
+        $(".nav-toggle").addClass("scrolled");
+        // $(".nav-side").addClass("scrolled");
         $('#content').animate({
             'opacity': '1'
         }, 500);
     } else {
         $("body.scrolled").removeClass("scrolled");
+        $(".nav-toggle.scrolled").removeClass("scrolled");
+        // $(".nav-side.scrolled").removeClass("scrolled");
     }
 });
 
