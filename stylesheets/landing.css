@@ -441,6 +441,34 @@ p .tech-used {
   color: #fff;
 }
 
+/*progress bar*/
+progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 5px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearancee: none;
+  border: none;
+  background-color: transparent;
+  color: #800020;
+  z-index: 1;
+}
+
+progress::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+progress::-webkit-progress-value {
+  background-color: #800020;1}
+
+progress::-moz-progress-bar {
+  background-color: #800020;1}
+
+/*end progress bar*/
+
 /*scroll arrow*/
 body:before {
    content:"\2193";
