@@ -447,13 +447,13 @@ progress {
   left: 0;
   top: 0;
   width: 100%;
-  height: 5px;
+  height: 3px;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearancee: none;
   border: none;
   background-color: transparent;
-  color: #800020;
+  color: #491256;
   z-index: 1;
 }
 
@@ -462,10 +462,12 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background-color: #800020;1}
+  background-color: #491256;1
+}
 
 progress::-moz-progress-bar {
-  background-color: #800020;1}
+  background-color: #491256;1
+}
 
 /*end progress bar*/
 
