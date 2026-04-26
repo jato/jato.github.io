@@ -1,0 +1,103 @@
+---
+import Layout from '../components/Layout.astro';
+---
+
+<Layout title="James Allen Brown">
+  <section class="intro">
+    <h1>James Allen Brown</h1>
+    <p class="lede">
+      I work on incident response, escalation design, and AI-native operating
+      systems. This is where I keep the writing, the working systems, and the
+      experiments that don't fit anywhere else.
+    </p>
+    <p class="lede-meta">
+      <a href="/writing/">Read the writing</a> ·
+      <a href="/systems/">See the systems</a>
+    </p>
+  </section>
+
+  <section class="now">
+    <h2>Now</h2>
+    <p>
+      <em>TODO: one paragraph on current focus — what you're building, reading,
+      thinking about. Update monthly.</em>
+    </p>
+  </section>
+
+  <section class="threads">
+    <h2>Threads</h2>
+    <ul class="thread-list">
+      <li>
+        <a href="/writing/">Writing</a>
+        <span>Essays on operational judgment, AI-native workflows, and humane technology.</span>
+      </li>
+      <li>
+        <a href="/systems/">Systems</a>
+        <span>Operating models for incident response, escalation, and metrics — written down.</span>
+      </li>
+      <li>
+        <a href="/experiments/">Experiments</a>
+        <span>Smaller things: visual studies, AI workflow tools, design explorations.</span>
+      </li>
+      <li>
+        <a href="/archive/">Archive</a>
+        <span>Earlier work — bootcamp-era projects and posts, kept for the record.</span>
+      </li>
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  .intro {
+    max-width: var(--measure);
+    margin-bottom: var(--space-10);
+  }
+
+  .lede {
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 1vw + 1rem, 1.4rem);
+    line-height: 1.5;
+    color: var(--color-ink);
+  }
+
+  .lede-meta {
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .now,
+  .threads {
+    max-width: var(--measure);
+    margin-bottom: var(--space-10);
+  }
+
+  .thread-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .thread-list li {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .thread-list a {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .thread-list a:hover {
+    text-decoration: underline;
+  }
+
+  .thread-list span {
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+  }
+</style>

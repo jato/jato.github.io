@@ -1,0 +1,95 @@
+---
+// Ports the cloud parallax system from the 2015 site (jato.github.io/stylesheets/landing.css:191-315).
+// CSS-only — no jQuery. Single SVG <symbol> reused via <use>, so the path only ships once.
+// Respects prefers-reduced-motion.
+---
+
+<div class="clouds" aria-hidden="true">
+  <svg width="0" height="0" style="position:absolute" focusable="false">
+    <symbol id="cloud-shape" viewBox="0 0 762 331">
+      <path
+        fill="currentColor"
+        d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+        c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+        C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+        S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z"
+      />
+    </symbol>
+  </svg>
+
+  <svg class="cloud cloud--big cloud--front cloud--slowest"><use href="#cloud-shape" /></svg>
+  <svg class="cloud cloud--smaller cloud--distant"><use href="#cloud-shape" /></svg>
+  <svg class="cloud cloud--small cloud--slow"><use href="#cloud-shape" /></svg>
+  <svg class="cloud cloud--massive cloud--distant cloud--super-slow"><use href="#cloud-shape" /></svg>
+  <svg class="cloud cloud--slower"><use href="#cloud-shape" /></svg>
+</div>
+
+<style>
+  .clouds {
+    position: fixed;
+    inset: 0 0 50% 0;
+    overflow: hidden;
+    pointer-events: none;
+    color: #ffffff;
+    z-index: 0;
+    transform: translateZ(0);
+  }
+
+  .cloud {
+    position: absolute;
+    top: 4%;
+    right: 0;
+    width: 300px;
+    height: auto;
+    opacity: 0;
+    animation: cloud-drift 8s linear infinite;
+  }
+
+  .cloud--front { z-index: 9; }
+  .cloud--distant { z-index: 1; }
+
+  .cloud--smaller {
+    width: 100px;
+    margin-right: 400px;
+    margin-top: 50px;
+  }
+  .cloud--small {
+    width: 150px;
+    margin-right: 200px;
+  }
+  .cloud--big {
+    width: 500px;
+    margin-top: 50px;
+    margin-right: 150px;
+  }
+  .cloud--massive {
+    width: 600px;
+    margin-top: 20px;
+  }
+
+  .cloud--slow { animation-duration: 9.2s; }
+  .cloud--slower { animation-duration: 11.2s; }
+  .cloud--slowest { animation-duration: 13.5s; }
+  .cloud--super-slow { animation-duration: 20.5s; }
+
+  @keyframes cloud-drift {
+    0% {
+      opacity: 0.08;
+      transform: translateX(300px);
+    }
+    10% { opacity: 0.5; }
+    90% { opacity: 0; }
+    100% {
+      opacity: 0;
+      transform: translateX(-1100px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cloud {
+      animation: none;
+      opacity: 0.35;
+      transform: translateX(-200px);
+    }
+  }
+</style>

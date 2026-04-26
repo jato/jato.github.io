@@ -1,0 +1,88 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/source-serif-4/400.css';
+@import '@fontsource/source-serif-4/400-italic.css';
+@import '@fontsource/source-serif-4/600.css';
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: var(--color-sky);
+  animation: sky-pulse var(--duration-pulse) ease-out 1;
+  line-height: 1.55;
+}
+
+@keyframes sky-pulse {
+  0% {
+    background-color: var(--color-sky-deep);
+  }
+  100% {
+    background-color: var(--color-sky);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+  }
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-4);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2vw + 0.75rem, 2rem);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+  max-width: var(--measure);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
