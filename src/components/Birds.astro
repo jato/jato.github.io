@@ -179,22 +179,28 @@
       { sel: '.bird-flight--4', dir: flightLTR, dur: 85000, delay: 42000, flap: 450 },
     ];
 
+    // Store animation handles on window so the resume handler in Layout.astro
+    // can call .play() on them after ClientRouter navigations / visibilitychange
+    // (iOS Safari pauses WAAPI animations on persisted elements during SPA swaps).
+    window.__birdAnims = window.__birdAnims || [];
     lanes.forEach(function (lane) {
       var el = container.querySelector(lane.sel);
       if (!el) return;
-      el.animate(lane.dir, {
+      var flight = el.animate(lane.dir, {
         duration: lane.dur,
         delay: lane.delay,
         iterations: Infinity,
         easing: 'linear',
       });
+      window.__birdAnims.push(flight);
       var inner = el.querySelector('.bird');
       if (inner) {
-        inner.animate(flapKeyframes, {
+        var flap = inner.animate(flapKeyframes, {
           duration: lane.flap,
           iterations: Infinity,
           easing: 'linear',
         });
+        window.__birdAnims.push(flap);
       }
     });
   })();

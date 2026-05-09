@@ -170,6 +170,29 @@ const inSection = (prefix: string) =>
       }
       updateRailActive();
       document.addEventListener('astro:page-load', updateRailActive);
+
+      // Resume background animations after ClientRouter navigations and on
+      // visibility change. iOS Safari pauses WAAPI animations on persisted
+      // elements during SPA swaps; without an explicit .play(), clouds and
+      // birds freeze until the next visibilitychange (e.g. screen wake).
+      function resumeBackgroundAnimations() {
+        ['__cloudAnims', '__birdAnims'].forEach(function (key) {
+          var arr = window[key];
+          if (!arr) return;
+          arr.forEach(function (a) {
+            try {
+              if (a.playState !== 'running') a.play();
+            } catch (e) {
+              /* ignore */
+            }
+          });
+        });
+      }
+      document.addEventListener('astro:page-load', resumeBackgroundAnimations);
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) resumeBackgroundAnimations();
+      });
+      window.addEventListener('pageshow', resumeBackgroundAnimations);
     </script>
 
     <style>
@@ -405,8 +428,41 @@ const inSection = (prefix: string) =>
         }
       }
 
+      /* Phones: keep the pill visible. Tighten gaps and font, drop the
+         secondary "Archive" link (still reachable via footer "Earlier work").
+         Allow horizontal scroll as a final fallback so nothing gets clipped. */
       @media (max-width: 480px) {
         .rail-nav {
+          gap: var(--space-2);
+          padding: 6px var(--space-3);
+          max-width: calc(100vw - var(--space-3));
+          overflow-x: auto;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+        }
+        .rail-nav::-webkit-scrollbar {
+          display: none;
+        }
+        .rail-wordmark {
+          font-size: 0.95rem;
+          padding-right: var(--space-2);
+        }
+        .rail-nav nav {
+          gap: var(--space-3);
+        }
+        .rail-nav nav a {
+          font-size: 0.78rem;
+        }
+        /* Drop Archive on very narrow widths — it's reachable via footer. */
+        .rail-nav nav a[href='/archive/'] {
+          display: none;
+        }
+      }
+
+      /* Below ~340px, also drop About. About is reachable via the page-card
+         header on first load. */
+      @media (max-width: 340px) {
+        .rail-nav nav a[href='/about/'] {
           display: none;
         }
       }

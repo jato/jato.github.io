@@ -103,13 +103,18 @@
       { transform: 'translateX(-1100px)', opacity: 0, offset: 1 },
     ];
 
+    // Store animation handles on window so the resume handler in Layout.astro
+    // can call .play() on them after ClientRouter navigations / visibilitychange
+    // (iOS Safari pauses WAAPI animations on persisted elements during SPA swaps).
+    window.__cloudAnims = window.__cloudAnims || [];
     clouds.forEach(function (cloud, i) {
       if (!cloud.animate) return;
-      cloud.animate(keyframes, {
+      var anim = cloud.animate(keyframes, {
         duration: durations[i] || 8000,
         iterations: Infinity,
         easing: 'linear',
       });
+      window.__cloudAnims.push(anim);
     });
   })();
 </script>
