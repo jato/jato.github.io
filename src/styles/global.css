@@ -29,21 +29,26 @@ body {
   line-height: 1.55;
   color: var(--color-sky-ink); /* used in hero band before paper card */
   background-color: var(--color-sky);
-  animation: sky-pulse var(--duration-pulse) ease-out 1;
 }
 
-@keyframes sky-pulse {
-  0% {
-    background-color: var(--color-sky-deep);
-  }
-  100% {
-    background-color: var(--color-sky);
-  }
+/* Sky-pulse: a fixed-position layer that fades from opaque navy to transparent
+   on first load, revealing the body's sky color underneath. The fade is
+   driven by Web Animations API in Layout.astro (not CSS), so ClientRouter's
+   stylesheet swap on navigation cannot restart it. The element is
+   transition:persist'd, so the same DOM node carries the running animation
+   across page navigations. */
+.sky-pulse {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--color-sky-deep);
+  opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body {
-    animation: none;
+  .sky-pulse {
+    opacity: 0 !important;
   }
 }
 

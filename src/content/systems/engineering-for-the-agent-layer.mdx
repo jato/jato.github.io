@@ -1,0 +1,67 @@
+---
+title: 'Engineering for the agent layer'
+summary: 'Notes on MCP, context modeling, and what changes when agents become first-class consumers of your tools.'
+status: 'active'
+publishedAt: 2026-05-09
+year: 2026
+tags: ['agents', 'MCP', 'context engineering', 'AI']
+draft: false
+---
+
+There's a particular kind of API documentation I keep seeing now. It opens
+with "for AI agents, please use the structured response format below." It
+includes a JSON schema. It includes natural-language hints about what each
+field means. The audience isn't a human developer reading a doc to write
+code. The audience is the agent that will consume this endpoint, in a
+context window, three turns deep into a multi-step task.
+
+That shift, from documentation written for humans to documentation written
+for agents, is the smaller version of a bigger pattern. Agents are
+becoming first-class consumers of the systems we build. Not just operators
+of them.
+
+Most of the practical implementation of this lives in MCP. Anthropic
+shipped the Model Context Protocol in late 2024 as an open standard for
+connecting AI assistants to external tools, data sources, and prompts. By
+2026 there's a sprawling ecosystem of servers. Slack. GitHub. Datadog.
+Postgres. Filesystems. Observability platforms. The protocol does one
+thing: it standardizes the contract between an agent and the tools it can
+call.
+
+That sounds technical. It is. But the implications are not just technical.
+
+When an agent can hit your tool through a protocol, your tool becomes part
+of the agent's reachable surface area. Every well-named function, every
+clear error message, every consistent return shape becomes a hint the
+model uses to figure out what to do. Bad APIs were always bad. They're now
+bad in a new way. They confuse models that are trying to accomplish a task
+on a human's behalf.
+
+The other shift is context. A 1M-token context window sounds infinite
+until you realize the agent is reading your codebase, your last 12 incident
+channels, the runbook, the on-call schedule, and the open Jira ticket. Now
+the question isn't *can this fit*. It's *what's the right context to load
+for this turn*. Context engineering is becoming a real practice. What you
+load. What you cache. What you summarize. What you just ask for again.
+
+Three things I think engineering teams should be doing:
+
+**Make your tools agent-readable.** This isn't about adding an LLM
+endpoint. It's about writing function names, error messages, and return
+shapes that a model can reason about as easily as a human can.
+
+**Treat MCP servers like first-class APIs.** Versioned. Documented.
+Backward-compatible. Tested. The agent is a client, and clients depend on
+stability.
+
+**Pay attention to what gets into the context window.** The cost is not
+bytes. The cost is attention budget. An agent that's drowning in
+irrelevant context is an agent that makes worse decisions, slowly.
+
+The job of engineering keeps changing. It used to be: build the system,
+document it for humans, monitor it. Now there's a fourth thing. Design it
+so an agent can use it.
+
+The good news is most of the engineering principles that make systems good
+for humans also make them good for agents. Clarity. Decoupling.
+Predictable failure modes. The work is the same. The audience is bigger.

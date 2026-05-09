@@ -1,0 +1,62 @@
+---
+title: 'Toward an AI-native postmortem workflow'
+summary: 'Principles for designing a postmortem process where the machine does the drafting and the human does the judgment.'
+status: 'active'
+publishedAt: 2026-04-12
+year: 2026
+tags: ['postmortem', 'incident response', 'AI']
+draft: false
+---
+
+The slowest part of an incident is usually the part after it ends.
+
+Once the system is back, the customer is informed, the on-call has been
+thanked and sent to bed: that's when the real work starts. Someone has to
+write down what happened. Why it happened. What we knew and when. What we'd
+change. What we wouldn't.
+
+This is the work that turns an incident into learning. It's also the work
+that consistently slips. Three days. A week. The postmortem doc lives in
+someone's drafts and ages out. By the time it's done, half the team has
+moved on. The other half is in the next incident.
+
+Here's the thing. A great deal of the postmortem can now be drafted by
+something that wasn't possible two years ago. An LLM with access to your
+incident channel, your tickets, your dashboards, and your runbooks can
+produce a credible first draft of a postmortem in minutes. It can pull the
+timeline. Identify the participants. Surface the metrics that mattered.
+Even guess at root cause from the surface evidence.
+
+That doesn't mean the AI writes the postmortem. It means the AI does the
+*transcription*. The human does the *judgment*.
+
+The principles I keep coming back to:
+
+**The first draft should be automatic.** If a human is opening a blank
+document and pulling timestamps from Slack, the system has failed. The
+question isn't whether AI is involved. It's whether the involvement is good
+enough that the human reaches for it instead of skipping it.
+
+**The human verifies, not the model.** Anything the AI produces has to be
+reviewed line by line by someone who was there. The point isn't to skip the
+review. The point is to make the review the only manual step.
+
+**The learning loop has to close.** A postmortem that doesn't change anything
+is paperwork. The workflow has to make it cheap to convert "lesson" into
+"ticket" into "actually-shipped change." Otherwise we're just generating
+better documentation of the same recurring failures.
+
+**Speed enables honesty.** When postmortems take days to write, people start
+unconsciously editing the timeline to be defensible. When they take thirty
+minutes to draft and an hour to refine, you can afford to be plain about
+what actually happened. Speed is a precondition for blameless culture, not
+a substitute for it.
+
+What's worth asking: which parts of incident learning are still genuinely
+human work? Pattern recognition across multiple incidents. Deciding what's
+a recurring failure mode versus a one-off. Hard conversations about
+ownership. The judgment to say *we should not have promised this customer
+that uptime*.
+
+That's the real estate the postmortem author should be working in.
+Everything else, the machine can draft.

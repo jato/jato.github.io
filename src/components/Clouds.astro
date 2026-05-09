@@ -1,10 +1,15 @@
 ---
 // Ports the cloud parallax system from the 2015 site (jato.github.io/stylesheets/landing.css:191-315).
-// CSS-only — no jQuery. Single SVG <symbol> reused via <use>, so the path only ships once.
+// Animation driven via Web Animations API (not CSS) so the running animations
+// survive ClientRouter navigations on this transition:persist'd element.
+// CSS-driven animations on persistent elements get restarted by stylesheet
+// re-evaluation; WAAPI animations are tied to the JS Animation object and
+// are unaffected.
+// Single SVG <symbol> reused via <use>, so the path only ships once.
 // Respects prefers-reduced-motion.
 ---
 
-<div class="clouds" aria-hidden="true">
+<div class="clouds" aria-hidden="true" transition:persist="clouds">
   <svg width="0" height="0" style="position:absolute" focusable="false">
     <symbol id="cloud-shape" viewBox="0 0 762 331">
       <path
@@ -42,7 +47,6 @@
     width: 300px;
     height: auto;
     opacity: 0;
-    animation: cloud-drift 8s linear infinite;
   }
 
   .cloud--front { z-index: 9; }
@@ -67,29 +71,45 @@
     margin-top: 20px;
   }
 
-  .cloud--slow { animation-duration: 9.2s; }
-  .cloud--slower { animation-duration: 11.2s; }
-  .cloud--slowest { animation-duration: 13.5s; }
-  .cloud--super-slow { animation-duration: 20.5s; }
-
-  @keyframes cloud-drift {
-    0% {
-      opacity: 0.08;
-      transform: translateX(300px);
-    }
-    10% { opacity: 0.5; }
-    90% { opacity: 0; }
-    100% {
-      opacity: 0;
-      transform: translateX(-1100px);
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .cloud {
-      animation: none;
       opacity: 0.35;
       transform: translateX(-200px);
     }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    var container = document.querySelector('.clouds');
+    if (!container || container.dataset.animated) return;
+    container.dataset.animated = 'true';
+
+    if (
+      window.matchMedia &&
+      matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+
+    var clouds = container.querySelectorAll('.cloud');
+    // Durations match the original 2015 cloud parallax timings.
+    var durations = [13500, 8000, 9200, 20500, 11200];
+
+    var keyframes = [
+      { transform: 'translateX(300px)', opacity: 0.08, offset: 0 },
+      { opacity: 0.5, offset: 0.1 },
+      { opacity: 0, offset: 0.9 },
+      { transform: 'translateX(-1100px)', opacity: 0, offset: 1 },
+    ];
+
+    clouds.forEach(function (cloud, i) {
+      if (!cloud.animate) return;
+      cloud.animate(keyframes, {
+        duration: durations[i] || 8000,
+        iterations: Infinity,
+        easing: 'linear',
+      });
+    });
+  })();
+</script>

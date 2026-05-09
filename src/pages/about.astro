@@ -2,31 +2,24 @@
 import Layout from '../components/Layout.astro';
 ---
 
-<Layout title="About — James Allen Brown">
+<Layout title="About · James Allen Brown">
   <article class="prose">
     <h1>About</h1>
 
     <p class="lede">
-      <em>
-        TODO (jato): one paragraph in your own voice. Who you are now, what
-        you work on, what you care about. Replace this lede before shipping.
-      </em>
-    </p>
-
-    <h2 class="eyebrow">Now</h2>
-    <p>
-      <em>
-        TODO: 2–4 sentences on current focus. What you're building, where
-        you're working, what's on your mind. Update every few months.
-      </em>
+      I'm James. After a decade as a software engineer and engineering
+      manager, I now apply those engineering principles (clarity, decoupling,
+      predictable failure modes, blameless postmortems) to SRE, crisis
+      management, and incident response. Some of what I figure out becomes
+      essays here. Some becomes working tools. Some stays in a notebook.
     </p>
 
     <h2 class="eyebrow">Earlier</h2>
     <p>
-      <em>
-        TODO: a short timeline. Roles, years, the shape of the path so far.
-        Keep it terse — this is a colophon, not a CV.
-      </em>
+      Engineering and operations work across
+      <strong>Datadog</strong> (cloud observability),
+      <strong>Alchemy</strong> (blockchain developer platform), and
+      <strong>Shippo</strong> (multi-carrier shipping for e-commerce).
     </p>
 
     <h2 class="eyebrow">Reach me</h2>
@@ -38,10 +31,11 @@ import Layout from '../components/Layout.astro';
 
     <h2 class="eyebrow">Colophon</h2>
     <p class="meta">
-      Built with Astro and MDX. Set in <a href="https://github.com/undercasetype/Fraunces">Fraunces</a>
-      (display) and <a href="https://rsms.me/inter/">Inter Tight</a> (text), both self-hosted.
-      The cloud animation is older than this site — ported from the 2015 version,
-      with the colors kept and the jQuery removed.
+      Built with Astro and MDX. Set in
+      <a href="https://github.com/undercasetype/Fraunces">Fraunces</a> (display)
+      and <a href="https://rsms.me/inter/">Inter Tight</a> (text), both
+      self-hosted. The cloud animation is older than this site, ported from
+      the 2015 version, with the colors kept and the jQuery removed.
     </p>
   </article>
 </Layout>
@@ -68,7 +62,7 @@ import Layout from '../components/Layout.astro';
     text-transform: uppercase;
     font-weight: 500;
     margin-top: var(--space-8);
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
   }
 
   .prose p {
@@ -78,5 +72,9 @@ import Layout from '../components/Layout.astro';
   .prose .meta {
     color: var(--color-ink-soft);
     font-size: 0.95rem;
+  }
+
+  .prose strong {
+    font-weight: 500;
   }
 </style>

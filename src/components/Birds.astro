@@ -9,7 +9,7 @@
 // briefly — exactly what you want).
 ---
 
-<div class="birds" aria-hidden="true">
+<div class="birds" aria-hidden="true" transition:persist="birds">
   <svg width="0" height="0" style="position: absolute" focusable="false">
     <!-- Four distinct silhouettes. All share the same 20x8 viewBox so sizing
          and the wing-flap (scaleY) animation work uniformly. -->
@@ -100,8 +100,6 @@
     left: 0;
     opacity: 0;
     will-change: transform, opacity;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
   }
 
   .bird {
@@ -109,90 +107,95 @@
     width: 22px;
     height: auto;
     transform-origin: center;
-    animation: bird-flap 0.32s linear infinite;
   }
 
-  /* Four lanes — different heights, sizes, speeds, directions. Delays kept short
-     enough that you see a bird every 10-25s on average. */
-  .bird-flight--1 {
-    top: 22%;
-    animation-name: bird-flight-ltr;
-    animation-duration: 55s;
-    animation-delay: -20s;
-  }
-
-  .bird-flight--2 {
-    top: 11%;
-    animation-name: bird-flight-ltr;
-    animation-duration: 70s;
-    animation-delay: 6s;
-  }
-  .bird-flight--2 .bird {
-    width: 17px;
-    animation-duration: 0.4s;
-  }
-
-  .bird-flight--3 {
-    top: 30%;
-    animation-name: bird-flight-rtl;
-    animation-duration: 65s;
-    animation-delay: 22s;
-  }
-  .bird-flight--3 .bird {
-    width: 26px;
-    animation-duration: 0.36s;
-  }
-
-  .bird-flight--4 {
-    top: 7%;
-    animation-name: bird-flight-ltr;
-    animation-duration: 85s;
-    animation-delay: 42s;
-  }
-  .bird-flight--4 .bird {
-    width: 15px;
-    animation-duration: 0.45s;
-  }
-
-  /* Flight: drift across with a gentle vertical sway. Fade in at the start,
-     fade out at the end so birds materialize/dematerialize at the edges.
-     Peak opacity 0.85 — visible against both the deep-navy load state and the
-     final sky blue. */
-  @keyframes bird-flight-ltr {
-    0%   { transform: translate(-12vw, 0); opacity: 0; }
-    4%   { opacity: 0.85; }
-    20%  { transform: translate(15vw, -6px); }
-    40%  { transform: translate(35vw, 4px); }
-    60%  { transform: translate(55vw, -10px); }
-    80%  { transform: translate(78vw, 2px); }
-    96%  { opacity: 0.85; }
-    100% { transform: translate(110vw, -4px); opacity: 0; }
-  }
-
-  @keyframes bird-flight-rtl {
-    0%   { transform: translate(110vw, 0); opacity: 0; }
-    4%   { opacity: 0.85; }
-    20%  { transform: translate(85vw, -7px); }
-    40%  { transform: translate(60vw, 5px); }
-    60%  { transform: translate(38vw, -10px); }
-    80%  { transform: translate(15vw, 3px); }
-    96%  { opacity: 0.85; }
-    100% { transform: translate(-12vw, -5px); opacity: 0; }
-  }
-
-  /* Wing-flap: vertical squash + slight skew, gives the sense of wings beating. */
-  @keyframes bird-flap {
-    0%, 100% { transform: scaleY(1); }
-    50%      { transform: scaleY(0.45); }
-  }
+  /* Four lanes — different heights, sizes, directions. Speeds and delays
+     are applied via Web Animations API in the script below (so they survive
+     ClientRouter navigations). */
+  .bird-flight--1 { top: 22%; }
+  .bird-flight--2 { top: 11%; }
+  .bird-flight--2 .bird { width: 17px; }
+  .bird-flight--3 { top: 30%; }
+  .bird-flight--3 .bird { width: 26px; }
+  .bird-flight--4 { top: 7%; }
+  .bird-flight--4 .bird { width: 15px; }
 
   @media (prefers-reduced-motion: reduce) {
-    .bird-flight,
-    .bird {
-      animation: none;
-    }
     .bird-flight {
       opacity: 0;
     }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    var container = document.querySelector('.birds');
+    if (!container || container.dataset.animated) return;
+    container.dataset.animated = 'true';
+
+    if (
+      window.matchMedia &&
+      matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+
+    if (!Element.prototype.animate) return;
+
+    // Flight paths — gentle vertical sway across the viewport, fading in/out
+    // at the edges so birds materialize and dematerialize.
+    var flightLTR = [
+      { transform: 'translate(-12vw, 0)', opacity: 0, offset: 0 },
+      { opacity: 0.85, offset: 0.04 },
+      { transform: 'translate(15vw, -6px)', offset: 0.2 },
+      { transform: 'translate(35vw, 4px)', offset: 0.4 },
+      { transform: 'translate(55vw, -10px)', offset: 0.6 },
+      { transform: 'translate(78vw, 2px)', offset: 0.8 },
+      { opacity: 0.85, offset: 0.96 },
+      { transform: 'translate(110vw, -4px)', opacity: 0, offset: 1 },
+    ];
+
+    var flightRTL = [
+      { transform: 'translate(110vw, 0)', opacity: 0, offset: 0 },
+      { opacity: 0.85, offset: 0.04 },
+      { transform: 'translate(85vw, -7px)', offset: 0.2 },
+      { transform: 'translate(60vw, 5px)', offset: 0.4 },
+      { transform: 'translate(38vw, -10px)', offset: 0.6 },
+      { transform: 'translate(15vw, 3px)', offset: 0.8 },
+      { opacity: 0.85, offset: 0.96 },
+      { transform: 'translate(-12vw, -5px)', opacity: 0, offset: 1 },
+    ];
+
+    var flapKeyframes = [
+      { transform: 'scaleY(1)', offset: 0 },
+      { transform: 'scaleY(0.45)', offset: 0.5 },
+      { transform: 'scaleY(1)', offset: 1 },
+    ];
+
+    var lanes = [
+      { sel: '.bird-flight--1', dir: flightLTR, dur: 55000, delay: -20000, flap: 320 },
+      { sel: '.bird-flight--2', dir: flightLTR, dur: 70000, delay: 6000, flap: 400 },
+      { sel: '.bird-flight--3', dir: flightRTL, dur: 65000, delay: 22000, flap: 360 },
+      { sel: '.bird-flight--4', dir: flightLTR, dur: 85000, delay: 42000, flap: 450 },
+    ];
+
+    lanes.forEach(function (lane) {
+      var el = container.querySelector(lane.sel);
+      if (!el) return;
+      el.animate(lane.dir, {
+        duration: lane.dur,
+        delay: lane.delay,
+        iterations: Infinity,
+        easing: 'linear',
+      });
+      var inner = el.querySelector('.bird');
+      if (inner) {
+        inner.animate(flapKeyframes, {
+          duration: lane.flap,
+          iterations: Infinity,
+          easing: 'linear',
+        });
+      }
+    });
+  })();
+</script>

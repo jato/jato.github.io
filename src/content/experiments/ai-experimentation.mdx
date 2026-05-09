@@ -1,0 +1,70 @@
+---
+title: "What AI-driven experimentation still can't decide"
+summary: 'On the next generation of A/B testing, the parts the machine actually replaces, and the part where human judgement is still doing the heavy lifting.'
+publishedAt: 2026-05-09
+year: 2026
+draft: false
+---
+
+There's a class of experiment platform that, by 2026, can do almost
+everything I used to manually orchestrate. Generate variant copy. Set up
+the test. Allocate traffic with a multi-armed bandit. Watch the metrics.
+Roll back the loser. Generate a brief explaining why the winner won.
+
+The pitch is *full-stack experimentation*. The pitch is mostly true.
+
+What it can't do is decide whether you should have run the test in the
+first place.
+
+Here's the kind of thing that happens. A team spends six weeks A/B testing
+the color of a checkout button. They get statistical significance. Variant
+B converts 4% better. Then someone asks the question that should have been
+asked in week one: *what would we actually do with another 4% conversion
+at this stage?* The answer, after some honest math, is: not enough to
+matter. They were optimizing the wrong layer of the funnel. The whole
+experiment, from a business perspective, was a more rigorous version of
+the wrong question.
+
+This is the hole that AI-driven experimentation widens, not closes. The
+tools get faster. The signal gets cleaner. The number of experiments you
+can run goes up. None of which addresses the only really hard part of
+experimentation, which is deciding what's worth measuring at all.
+
+The new wave of platforms can propose hypotheses. LLMs scan your product
+analytics and surface "users who do X are 2.4x more likely to retain.
+Should we try a variant that nudges X?" That's useful. It's also
+potentially dangerous. A system that proposes hypotheses based on patterns
+it sees in your data is a system that can fluently propose hypotheses you
+would never want to test on principle. Manipulating users into outcomes
+you optimized for, but didn't decide on, is the easiest thing to do in
+this stack now.
+
+Three things I think still belong squarely with humans:
+
+**The success metric.** The model can suggest what to measure. The model
+cannot decide what *should* be measured. That choice carries every value
+tradeoff downstream. If you outsource it, you outsource the company's
+actual values.
+
+**The off-limits.** Some experiments shouldn't run. Dark patterns.
+Dependency-inducing nudges. Tests that wouldn't pass a press release.
+Models don't have an instinct for this. The humans in the room do, if
+they're given permission to say no.
+
+**The interpretation.** "Variant B won" is a fact. "Variant B won because
+we shifted users from X to Y, and Y aligns with the part of the product we
+want to grow" is judgement. The first is automatable. The second is the
+part the company is actually paying for.
+
+A useful test: imagine a team where every experiment is generated, run,
+and analyzed by AI, with a human only signing off. After a year, what does
+the product look like? In practice, the answer is usually a slightly more
+profitable version of whatever was already there, missing the thing that
+would have made it actually better.
+
+That's the cost of automating away the judgement layer. You get more
+decisions, faster, at the cost of better decisions, slower.
+
+The right shape is the inverse. Let the machine run the experiments. Let
+the human decide which ones to run, and what the result means. The
+interesting work is not at the edges of the funnel. It's at the question.

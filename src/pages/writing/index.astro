@@ -13,7 +13,7 @@ const fmt = new Intl.DateTimeFormat('en-US', {
 });
 ---
 
-<Layout title="Writing — James Allen Brown">
+<Layout title="Writing · James Allen Brown">
   <header class="section-head">
     <h1>Writing</h1>
     <p class="lede">
@@ -85,6 +85,7 @@ const fmt = new Intl.DateTimeFormat('en-US', {
   .post-list li {
     display: grid;
     gap: var(--space-2);
+    min-width: 0;
   }
 
   .post-title {
@@ -94,7 +95,7 @@ const fmt = new Intl.DateTimeFormat('en-US', {
     font-size: 1.5rem;
     text-decoration: none;
     color: var(--color-ink);
-    width: max-content;
+    overflow-wrap: break-word;
   }
 
   .post-title:hover {

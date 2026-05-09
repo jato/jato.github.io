@@ -7,6 +7,7 @@ const systems = defineCollection({
     title: z.string(),
     summary: z.string(),
     status: z.enum(['active', 'paused', 'archived']).default('active'),
+    publishedAt: z.coerce.date().optional(),
     year: z.number().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
@@ -18,6 +19,7 @@ const experiments = defineCollection({
   schema: z.object({
     title: z.string(),
     summary: z.string(),
+    publishedAt: z.coerce.date().optional(),
     year: z.number().optional(),
     sourceUrl: z.string().url().optional(),
     draft: z.boolean().default(false),

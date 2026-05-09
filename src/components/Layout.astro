@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import Clouds from './Clouds.astro';
 import Birds from './Birds.astro';
 
@@ -11,11 +12,14 @@ interface Props {
 
 const {
   title,
-  description = 'James Allen Brown — systems, essays, design experiments.',
+  description = 'Systems, essays, and design experiments by James Allen Brown.',
   showClouds = true,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const currentPath = Astro.url.pathname;
+const inSection = (prefix: string) =>
+  prefix === '/' ? currentPath === '/' : currentPath.startsWith(prefix);
 ---
 
 <!doctype html>
@@ -32,13 +36,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#71acd6" />
+    <ClientRouter />
   </head>
   <body>
+    <div class="sky-pulse" transition:persist="sky-pulse" aria-hidden="true"></div>
     {showClouds && <Birds />}
     {showClouds && <Clouds />}
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header">
+    <header class="site-header" transition:persist="site-header">
       <a href="/" class="wordmark">jato</a>
       <nav aria-label="Primary">
         <a href="/writing/">Writing</a>
@@ -52,7 +58,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
       <main id="main" class="site-main">
         <slot />
       </main>
-      <footer class="site-footer">
+      <footer class="site-footer" transition:persist="site-footer">
         <div class="footer-row">
           <p class="links">
             <a href="https://github.com/jato">GitHub</a>
@@ -65,6 +71,106 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         </div>
       </footer>
     </div>
+
+    <aside
+      class="rail-nav"
+      data-rail-nav
+      transition:persist="rail-nav"
+      aria-label="Section navigation"
+    >
+      <a
+        href="/"
+        class="rail-wordmark"
+        aria-current={inSection('/') ? 'page' : undefined}>jato</a>
+      <nav>
+        <a
+          href="/writing/"
+          aria-current={inSection('/writing/') ? 'page' : undefined}
+          >Writing</a>
+        <a
+          href="/systems/"
+          aria-current={inSection('/systems/') ? 'page' : undefined}
+          >Systems</a>
+        <a
+          href="/experiments/"
+          aria-current={inSection('/experiments/') ? 'page' : undefined}
+          >Experiments</a>
+        <a
+          href="/about/"
+          aria-current={inSection('/about/') ? 'page' : undefined}>About</a>
+        <a
+          href="/archive/"
+          aria-current={inSection('/archive/') ? 'page' : undefined}
+          >Archive</a>
+      </nav>
+    </aside>
+
+    <script is:inline>
+      // Drive the sky-pulse fade via the Web Animations API so it can't be
+      // restarted by CSS re-evaluation when ClientRouter swaps stylesheets.
+      // The .sky-pulse element is transition:persist'd, so the same DOM node
+      // (and its running animation) carries through every navigation. The
+      // dataset flag ensures the animation only kicks off once per full load.
+      (function () {
+        var sp = document.querySelector('.sky-pulse');
+        if (!sp || sp.dataset.pulsed) return;
+        sp.dataset.pulsed = 'true';
+        if (
+          window.matchMedia &&
+          matchMedia('(prefers-reduced-motion: reduce)').matches
+        ) {
+          return;
+        }
+        if (!sp.animate) return; // very old browser fallback: no pulse, just static sky
+        sp.style.opacity = '1';
+        sp.animate(
+          [{ opacity: 1 }, { opacity: 0 }],
+          { duration: 12000, easing: 'ease-out', fill: 'forwards' }
+        );
+      })();
+
+      // Wire IntersectionObserver once. Rail + header both transition:persist
+      // so the observer keeps watching across ClientRouter navigations.
+      (function () {
+        var rail = document.querySelector('[data-rail-nav]');
+        var header = document.querySelector('.site-header');
+        if (!rail || !header) return;
+
+        if (!rail.dataset.wired) {
+          rail.dataset.wired = 'true';
+          if ('IntersectionObserver' in window) {
+            new IntersectionObserver(
+              function (entries) {
+                rail.classList.toggle('is-visible', !entries[0].isIntersecting);
+              },
+              { threshold: 0, rootMargin: '0px 0px -10% 0px' }
+            ).observe(header);
+          } else {
+            rail.classList.add('is-visible');
+          }
+        }
+
+        // Immediate check (fires before the observer in case page is already scrolled)
+        var rect = header.getBoundingClientRect();
+        var headerVisible = rect.bottom > 0 && rect.top < window.innerHeight;
+        rail.classList.toggle('is-visible', !headerVisible);
+      })();
+
+      // Update active-nav highlight on every page-load (URL-dependent).
+      function updateRailActive() {
+        var rail = document.querySelector('[data-rail-nav]');
+        if (!rail) return;
+        var path = location.pathname;
+        rail.querySelectorAll('a').forEach(function (a) {
+          var href = a.getAttribute('href') || '';
+          var matches = href === '/' ? path === '/' : path.startsWith(href);
+          if (matches) a.setAttribute('aria-current', 'page');
+          else a.removeAttribute('aria-current');
+        });
+      }
+      updateRailActive();
+      document.addEventListener('astro:page-load', updateRailActive);
+    </script>
 
     <style>
       .skip-link {
@@ -174,12 +280,115 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         text-decoration: underline;
       }
 
+      .rail-nav {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        transform: translate(8px, -50%);
+        z-index: 30;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        padding: var(--space-4) var(--space-5);
+        background: rgba(246, 241, 231, 0.92);
+        backdrop-filter: blur(10px) saturate(1.2);
+        -webkit-backdrop-filter: blur(10px) saturate(1.2);
+        border: 1px solid var(--color-rule);
+        border-right: none;
+        border-radius: 14px 0 0 14px;
+        box-shadow: 0 4px 18px -4px rgba(21, 24, 43, 0.15);
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+      }
+      .rail-nav.is-visible {
+        opacity: 1;
+        transform: translate(0, -50%);
+        pointer-events: auto;
+      }
+      .rail-wordmark {
+        font-family: var(--font-serif);
+        font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
+        font-weight: 460;
+        font-size: 1.15rem;
+        line-height: 1;
+        text-decoration: none;
+        color: var(--color-ink);
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--color-rule);
+      }
+      .rail-nav nav {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+      .rail-nav nav a {
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        color: var(--color-ink-soft);
+        padding: 2px 0;
+      }
+      .rail-nav nav a:hover {
+        color: var(--color-ink);
+      }
+      .rail-nav nav a[aria-current='page'] {
+        color: var(--color-ink);
+        font-weight: 500;
+      }
+      .rail-wordmark[aria-current='page'] {
+        color: var(--color-accent);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rail-nav {
+          transition: opacity 0.15s linear;
+          transform: translate(0, -50%);
+        }
+      }
+
+      /* Narrow viewports: rail becomes a horizontal pill at bottom-center
+         so it doesn't overlap the page-card content. Hidden entirely on
+         very small screens. */
       @media (max-width: 700px) {
         .site-header {
           flex-direction: column;
           gap: var(--space-3);
           align-items: flex-start;
           padding: var(--space-5) var(--space-5) var(--space-6);
+        }
+        .rail-nav {
+          top: auto;
+          right: 50%;
+          bottom: var(--space-4);
+          transform: translate(50%, 8px);
+          flex-direction: row;
+          align-items: center;
+          gap: var(--space-3);
+          padding: var(--space-2) var(--space-4);
+          border-right: 1px solid var(--color-rule);
+          border-radius: 999px;
+          font-size: 0.85rem;
+          max-width: calc(100vw - var(--space-5));
+        }
+        .rail-nav.is-visible {
+          transform: translate(50%, 0);
+        }
+        .rail-wordmark {
+          padding-bottom: 0;
+          padding-right: var(--space-3);
+          border-bottom: none;
+          border-right: 1px solid var(--color-rule);
+          font-size: 1rem;
+        }
+        .rail-nav nav {
+          flex-direction: row;
+          gap: var(--space-4);
+        }
+        .rail-nav nav a {
+          font-size: 0.82rem;
+          white-space: nowrap;
         }
         .page-card {
           margin-left: var(--space-3);
@@ -193,6 +402,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         }
         .footer-row {
           flex-direction: column;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .rail-nav {
+          display: none;
         }
       }
     </style>
