@@ -171,28 +171,123 @@ const inSection = (prefix: string) =>
       updateRailActive();
       document.addEventListener('astro:page-load', updateRailActive);
 
-      // Resume background animations after ClientRouter navigations and on
-      // visibility change. iOS Safari pauses WAAPI animations on persisted
-      // elements during SPA swaps; without an explicit .play(), clouds and
-      // birds freeze until the next visibilitychange (e.g. screen wake).
-      function resumeBackgroundAnimations() {
-        ['__cloudAnims', '__birdAnims'].forEach(function (key) {
-          var arr = window[key];
-          if (!arr) return;
-          arr.forEach(function (a) {
-            try {
-              if (a.playState !== 'running') a.play();
-            } catch (e) {
-              /* ignore */
+      // Single global rAF controller drives clouds + birds. Replaces WAAPI
+      // because iOS Safari pauses WAAPI animations on persisted elements
+      // during ClientRouter navigations and won't resume on .play(). rAF is
+      // tied to document visibility (throttled, not paused, while visible),
+      // so animations keep advancing across SPA navigations.
+      (function () {
+        if (window.__skyAnim) return;
+        if (
+          window.matchMedia &&
+          matchMedia('(prefers-reduced-motion: reduce)').matches
+        ) {
+          window.__skyAnim = { active: false };
+          return;
+        }
+        window.__skyAnim = { active: true };
+
+        var startTime = 0;
+
+        // Clouds: durations match 2015 site parallax timings.
+        var cloudDurations = [13500, 8000, 9200, 20500, 11200];
+
+        // Birds: dur/delay/direction match the previous WAAPI lane config.
+        // Negative delay = "already N ms into first cycle on load".
+        var birdLanes = [
+          { sel: '.bird-flight--1', dur: 55000, delay: -20000, rtl: false, flap: 320 },
+          { sel: '.bird-flight--2', dur: 70000, delay: 6000, rtl: false, flap: 400 },
+          { sel: '.bird-flight--3', dur: 65000, delay: 22000, rtl: true, flap: 360 },
+          { sel: '.bird-flight--4', dur: 85000, delay: 42000, rtl: false, flap: 450 },
+        ];
+
+        // Flight keyframes: x in vw, y in px, opacity 0..0.85.
+        var flightLTR = [
+          { o: 0,    x: -12, y: 0,   a: 0 },
+          { o: 0.04, x: -8,  y: 0,   a: 0.85 },
+          { o: 0.2,  x: 15,  y: -6,  a: 0.85 },
+          { o: 0.4,  x: 35,  y: 4,   a: 0.85 },
+          { o: 0.6,  x: 55,  y: -10, a: 0.85 },
+          { o: 0.8,  x: 78,  y: 2,   a: 0.85 },
+          { o: 0.96, x: 105, y: -3,  a: 0.85 },
+          { o: 1,    x: 110, y: -4,  a: 0 },
+        ];
+        var flightRTL = [
+          { o: 0,    x: 110, y: 0,   a: 0 },
+          { o: 0.04, x: 106, y: 0,   a: 0.85 },
+          { o: 0.2,  x: 85,  y: -7,  a: 0.85 },
+          { o: 0.4,  x: 60,  y: 5,   a: 0.85 },
+          { o: 0.6,  x: 38,  y: -10, a: 0.85 },
+          { o: 0.8,  x: 15,  y: 3,   a: 0.85 },
+          { o: 0.96, x: -8,  y: -3,  a: 0.85 },
+          { o: 1,    x: -12, y: -5,  a: 0 },
+        ];
+
+        function lerp(a, b, u) { return a + (b - a) * u; }
+
+        function interpFlight(kf, t) {
+          var prev = kf[0], curr = kf[kf.length - 1];
+          for (var i = 1; i < kf.length; i++) {
+            if (kf[i].o >= t) {
+              prev = kf[i - 1];
+              curr = kf[i];
+              break;
             }
-          });
-        });
-      }
-      document.addEventListener('astro:page-load', resumeBackgroundAnimations);
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) resumeBackgroundAnimations();
-      });
-      window.addEventListener('pageshow', resumeBackgroundAnimations);
+          }
+          var u = (t - prev.o) / (curr.o - prev.o || 1);
+          return {
+            x: lerp(prev.x, curr.x, u),
+            y: lerp(prev.y, curr.y, u),
+            a: lerp(prev.a, curr.a, u),
+          };
+        }
+
+        function tick(now) {
+          if (!startTime) startTime = now;
+          var t = now - startTime;
+
+          var clouds = document.querySelectorAll('.cloud');
+          for (var ci = 0; ci < clouds.length; ci++) {
+            var dur = cloudDurations[ci] || 8000;
+            var phase = (t % dur) / dur;
+            var x = 300 - 1400 * phase;
+            var op;
+            if (phase < 0.1) op = lerp(0.08, 0.5, phase / 0.1);
+            else if (phase < 0.9) op = lerp(0.5, 0, (phase - 0.1) / 0.8);
+            else op = 0;
+            clouds[ci].style.transform = 'translateX(' + x.toFixed(2) + 'px)';
+            clouds[ci].style.opacity = op.toFixed(3);
+          }
+
+          for (var li = 0; li < birdLanes.length; li++) {
+            var lane = birdLanes[li];
+            var el = document.querySelector(lane.sel);
+            if (!el) continue;
+            var animTime = t - lane.delay;
+            if (animTime < 0) {
+              el.style.opacity = '0';
+              continue;
+            }
+            var bphase = (animTime % lane.dur) / lane.dur;
+            var f = interpFlight(lane.rtl ? flightRTL : flightLTR, bphase);
+            el.style.transform = 'translate(' + f.x.toFixed(2) + 'vw, ' + f.y.toFixed(2) + 'px)';
+            el.style.opacity = f.a.toFixed(3);
+
+            var inner = el.querySelector('.bird');
+            if (inner) {
+              var fphase = (t % lane.flap) / lane.flap;
+              var sy = fphase < 0.5
+                ? lerp(1, 0.45, fphase / 0.5)
+                : lerp(0.45, 1, (fphase - 0.5) / 0.5);
+              inner.style.transform = 'scaleY(' + sy.toFixed(3) + ')';
+            }
+          }
+
+          requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      })();
     </script>
 
     <style>

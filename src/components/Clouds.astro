@@ -79,42 +79,6 @@
   }
 </style>
 
-<script is:inline>
-  (function () {
-    var container = document.querySelector('.clouds');
-    if (!container || container.dataset.animated) return;
-    container.dataset.animated = 'true';
-
-    if (
-      window.matchMedia &&
-      matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      return;
-    }
-
-    var clouds = container.querySelectorAll('.cloud');
-    // Durations match the original 2015 cloud parallax timings.
-    var durations = [13500, 8000, 9200, 20500, 11200];
-
-    var keyframes = [
-      { transform: 'translateX(300px)', opacity: 0.08, offset: 0 },
-      { opacity: 0.5, offset: 0.1 },
-      { opacity: 0, offset: 0.9 },
-      { transform: 'translateX(-1100px)', opacity: 0, offset: 1 },
-    ];
-
-    // Store animation handles on window so the resume handler in Layout.astro
-    // can call .play() on them after ClientRouter navigations / visibilitychange
-    // (iOS Safari pauses WAAPI animations on persisted elements during SPA swaps).
-    window.__cloudAnims = window.__cloudAnims || [];
-    clouds.forEach(function (cloud, i) {
-      if (!cloud.animate) return;
-      var anim = cloud.animate(keyframes, {
-        duration: durations[i] || 8000,
-        iterations: Infinity,
-        easing: 'linear',
-      });
-      window.__cloudAnims.push(anim);
-    });
-  })();
-</script>
+<!-- Cloud + bird animation is driven by the single rAF controller in
+     Layout.astro (window.__skyAnim). rAF survives ClientRouter navigations
+     and avoids iOS Safari's WAAPI pause-on-SPA-swap bug. -->
