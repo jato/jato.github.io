@@ -1,0 +1,107 @@
+---
+import Layout from '../../components/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const systems = (
+  await getCollection('systems', ({ data }) => !data.draft)
+).sort((a, b) => (a.data.year ?? 0) - (b.data.year ?? 0));
+---
+
+<Layout title="Systems — James Allen Brown">
+  <header class="section-head">
+    <h1>Systems</h1>
+    <p class="lede">
+      Operating models for incident response, escalation, and metrics —
+      written down. Each piece is a working system, not a finished essay.
+    </p>
+  </header>
+
+  {
+    systems.length === 0 ? (
+      <div class="empty">
+        <p>
+          Nothing published here yet. The shape will likely include:
+          AI-native postmortem workflows, escalation intake, proactive
+          alerting, incident communication, and operational metrics.
+        </p>
+      </div>
+    ) : (
+      <ul class="system-list">
+        {systems.map((sys) => (
+          <li>
+            <a href={`/systems/${sys.id}/`} class="system-title">
+              {sys.data.title}
+            </a>
+            <p class="system-summary">{sys.data.summary}</p>
+            {sys.data.status !== 'active' && (
+              <span class="status">{sys.data.status}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Layout>
+
+<style>
+  .section-head {
+    margin-bottom: var(--space-10);
+    max-width: var(--measure);
+  }
+  .section-head h1 {
+    margin-bottom: var(--space-4);
+  }
+  .lede {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 60, 'SOFT' 50;
+    font-size: clamp(1.15rem, 0.8vw + 1rem, 1.35rem);
+    line-height: 1.45;
+    color: var(--color-ink);
+  }
+  .empty {
+    color: var(--color-ink-soft);
+    font-size: 1rem;
+    border-left: 2px solid var(--color-rule);
+    padding-left: var(--space-4);
+    max-width: var(--measure-narrow);
+  }
+  .system-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+  .system-list li {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .system-title {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 90, 'SOFT' 40;
+    font-weight: 460;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-ink);
+    width: max-content;
+  }
+  .system-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .system-summary {
+    color: var(--color-ink-soft);
+    margin: 0;
+    max-width: var(--measure-narrow);
+  }
+  .status {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.7rem;
+    color: var(--color-ink-muted);
+    border: 1px solid var(--color-rule);
+    padding: 2px 8px;
+    border-radius: 999px;
+    width: max-content;
+  }
+</style>

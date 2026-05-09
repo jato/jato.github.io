@@ -1,0 +1,82 @@
+---
+import Layout from '../components/Layout.astro';
+---
+
+<Layout title="About — James Allen Brown">
+  <article class="prose">
+    <h1>About</h1>
+
+    <p class="lede">
+      <em>
+        TODO (jato): one paragraph in your own voice. Who you are now, what
+        you work on, what you care about. Replace this lede before shipping.
+      </em>
+    </p>
+
+    <h2 class="eyebrow">Now</h2>
+    <p>
+      <em>
+        TODO: 2–4 sentences on current focus. What you're building, where
+        you're working, what's on your mind. Update every few months.
+      </em>
+    </p>
+
+    <h2 class="eyebrow">Earlier</h2>
+    <p>
+      <em>
+        TODO: a short timeline. Roles, years, the shape of the path so far.
+        Keep it terse — this is a colophon, not a CV.
+      </em>
+    </p>
+
+    <h2 class="eyebrow">Reach me</h2>
+    <p>
+      <a href="mailto:jatobrown@gmail.com">jatobrown@gmail.com</a><br />
+      <a href="https://github.com/jato">github.com/jato</a><br />
+      <a href="https://www.linkedin.com/in/jamesallenbrown">linkedin.com/in/jamesallenbrown</a>
+    </p>
+
+    <h2 class="eyebrow">Colophon</h2>
+    <p class="meta">
+      Built with Astro and MDX. Set in <a href="https://github.com/undercasetype/Fraunces">Fraunces</a>
+      (display) and <a href="https://rsms.me/inter/">Inter Tight</a> (text), both self-hosted.
+      The cloud animation is older than this site — ported from the 2015 version,
+      with the colors kept and the jQuery removed.
+    </p>
+  </article>
+</Layout>
+
+<style>
+  .prose {
+    max-width: var(--measure);
+  }
+
+  .prose .lede {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 60, 'SOFT' 50;
+    font-size: clamp(1.15rem, 0.8vw + 1rem, 1.4rem);
+    line-height: 1.45;
+    color: var(--color-ink);
+    margin-bottom: var(--space-8);
+  }
+
+  .prose h2.eyebrow {
+    color: var(--color-ink-muted);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+
+  .prose p {
+    color: var(--color-ink);
+  }
+
+  .prose .meta {
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+  }
+</style>

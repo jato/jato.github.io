@@ -1,0 +1,154 @@
+---
+import Layout from '../../components/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('archiveProjects')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const posts = await getCollection('archivePosts');
+const postCount = posts.length;
+---
+
+<Layout title="Archive — James Allen Brown">
+  <header class="section-head">
+    <h1>Archive</h1>
+    <p class="lede">
+      Earlier work. Bootcamp-era projects from 2015–2016 and the blog posts
+      that came with them. Kept here with warmth, not buried.
+    </p>
+  </header>
+
+  <section class="block">
+    <h2 class="eyebrow">Projects</h2>
+    <ul class="project-list">
+      {
+        projects.map((p) => (
+          <li>
+            <div class="proj-head">
+              <a href={`/archive/${p.id}/`} class="proj-title">
+                {p.data.title}
+              </a>
+              <span class="proj-year">{p.data.year}</span>
+            </div>
+            <p class="proj-summary">{p.data.summary}</p>
+            {p.data.stack.length > 0 && (
+              <p class="proj-stack">{p.data.stack.join(' · ')}</p>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="block">
+    <h2 class="eyebrow">Blog ({postCount} posts)</h2>
+    <p>
+      Sixteen posts from the bootcamp years (2015–2016): half cultural
+      reflections, half technical exercises. Preserved as written.
+    </p>
+    <p>
+      <a href="/archive/blog/" class="cta">Read the archive blog →</a>
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .section-head {
+    margin-bottom: var(--space-10);
+    max-width: var(--measure);
+  }
+  .section-head h1 {
+    margin-bottom: var(--space-4);
+  }
+  .lede {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 60, 'SOFT' 50;
+    font-size: clamp(1.15rem, 0.8vw + 1rem, 1.35rem);
+    line-height: 1.45;
+    color: var(--color-ink);
+  }
+
+  .block {
+    margin-bottom: var(--space-10);
+  }
+
+  .eyebrow {
+    color: var(--color-ink-muted);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: var(--space-5);
+  }
+
+  .rule {
+    border: 0;
+    height: 1px;
+    background: var(--color-rule);
+    margin: var(--space-10) 0;
+  }
+
+  .project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-7, 2.5rem);
+  }
+  .project-list li {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .proj-head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .proj-title {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 90, 'SOFT' 40;
+    font-weight: 460;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+  .proj-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .proj-year {
+    color: var(--color-ink-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+
+  .proj-summary {
+    color: var(--color-ink-soft);
+    margin: 0;
+    max-width: var(--measure-narrow);
+  }
+
+  .proj-stack {
+    color: var(--color-ink-muted);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .cta {
+    text-decoration: none;
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-ink-muted);
+    padding-bottom: 1px;
+  }
+  .cta:hover {
+    border-bottom-color: var(--color-ink);
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+import Layout from '../../components/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const experiments = (
+  await getCollection('experiments', ({ data }) => !data.draft)
+).sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+---
+
+<Layout title="Experiments — James Allen Brown">
+  <header class="section-head">
+    <h1>Experiments</h1>
+    <p class="lede">
+      Smaller things — visual studies, AI workflow tools, design
+      explorations. Not finished products. The point is the question.
+    </p>
+  </header>
+
+  {
+    experiments.length === 0 ? (
+      <div class="empty">
+        <p>
+          Nothing here yet. The cloud animation drifting behind this page is
+          one. More to come.
+        </p>
+      </div>
+    ) : (
+      <ul class="experiment-list">
+        {experiments.map((exp) => (
+          <li>
+            <a href={`/experiments/${exp.id}/`} class="experiment-title">
+              {exp.data.title}
+            </a>
+            <p class="experiment-summary">{exp.data.summary}</p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Layout>
+
+<style>
+  .section-head {
+    margin-bottom: var(--space-10);
+    max-width: var(--measure);
+  }
+  .section-head h1 {
+    margin-bottom: var(--space-4);
+  }
+  .lede {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 60, 'SOFT' 50;
+    font-size: clamp(1.15rem, 0.8vw + 1rem, 1.35rem);
+    line-height: 1.45;
+    color: var(--color-ink);
+  }
+  .empty {
+    color: var(--color-ink-soft);
+    font-size: 1rem;
+    border-left: 2px solid var(--color-rule);
+    padding-left: var(--space-4);
+    max-width: var(--measure-narrow);
+  }
+  .experiment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+  .experiment-list li {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .experiment-title {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 90, 'SOFT' 40;
+    font-weight: 460;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-ink);
+    width: max-content;
+  }
+  .experiment-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .experiment-summary {
+    color: var(--color-ink-soft);
+    margin: 0;
+    max-width: var(--measure-narrow);
+  }
+</style>

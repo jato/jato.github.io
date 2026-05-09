@@ -1,0 +1,170 @@
+---
+import Layout from '../../../components/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('archivePosts')).sort(
+  (a, b) => a.data.publishedAt.valueOf() - b.data.publishedAt.valueOf(),
+);
+
+const cultural = posts.filter((p) => p.data.category === 'cultural');
+const technical = posts.filter((p) => p.data.category === 'technical');
+
+const fmt = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+});
+---
+
+<Layout title="Archive Blog — James Allen Brown">
+  <article class="prose">
+    <p class="back"><a href="/archive/">← Archive</a></p>
+
+    <header class="section-head">
+      <h1>Archive Blog</h1>
+      <p class="lede">
+        Sixteen posts from 2015–2016, written during a coding bootcamp.
+        Half are cultural reflections; half are technical exercises.
+        Preserved as written.
+      </p>
+    </header>
+
+    <section class="block">
+      <h2 class="eyebrow">Cultural</h2>
+      <ul class="post-list">
+        {
+          cultural.map((p) => (
+            <li>
+              <a href={`/archive/blog/${p.id}/`} class="post-title">
+                {p.data.title}
+              </a>
+              {p.data.subtitle && (
+                <p class="post-subtitle">{p.data.subtitle}</p>
+              )}
+              <time datetime={p.data.publishedAt.toISOString()}>
+                {fmt.format(p.data.publishedAt)}
+              </time>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="block">
+      <h2 class="eyebrow">Technical</h2>
+      <ul class="post-list">
+        {
+          technical.map((p) => (
+            <li>
+              <a href={`/archive/blog/${p.id}/`} class="post-title">
+                {p.data.title}
+              </a>
+              {p.data.subtitle && (
+                <p class="post-subtitle">{p.data.subtitle}</p>
+              )}
+              <time datetime={p.data.publishedAt.toISOString()}>
+                {fmt.format(p.data.publishedAt)}
+              </time>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .prose {
+    max-width: var(--measure);
+  }
+
+  .back {
+    color: var(--color-ink-muted);
+    font-size: 0.9rem;
+    margin-bottom: var(--space-6);
+  }
+  .back a {
+    color: var(--color-ink-soft);
+    text-decoration: none;
+  }
+  .back a:hover {
+    text-decoration: underline;
+  }
+
+  .section-head {
+    margin-bottom: var(--space-10);
+  }
+  .section-head h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .lede {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 60, 'SOFT' 50;
+    font-size: clamp(1.1rem, 0.6vw + 1rem, 1.3rem);
+    line-height: 1.45;
+    color: var(--color-ink);
+  }
+
+  .block {
+    margin-bottom: var(--space-8);
+  }
+
+  .eyebrow {
+    color: var(--color-ink-muted);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: var(--space-5);
+  }
+
+  .rule {
+    border: 0;
+    height: 1px;
+    background: var(--color-rule);
+    margin: var(--space-8) 0;
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .post-list li {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .post-title {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 60, 'SOFT' 30;
+    font-weight: 460;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--color-ink);
+    width: max-content;
+  }
+
+  .post-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .post-subtitle {
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  time {
+    color: var(--color-ink-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+</style>

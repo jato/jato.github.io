@@ -1,0 +1,116 @@
+---
+import Layout from '../../components/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const essays = (await getCollection('essays', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+
+const fmt = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title="Writing — James Allen Brown">
+  <header class="section-head">
+    <h1>Writing</h1>
+    <p class="lede">
+      Essays on operational judgment, AI-native workflows, and humane
+      technology.
+    </p>
+  </header>
+
+  {
+    essays.length === 0 ? (
+      <div class="empty">
+        <p>
+          Nothing published here yet. Older posts from the bootcamp era live
+          in the <a href="/archive/">archive</a>.
+        </p>
+      </div>
+    ) : (
+      <ul class="post-list">
+        {essays.map((essay) => (
+          <li>
+            <a href={`/writing/${essay.id}/`} class="post-title">
+              {essay.data.title}
+            </a>
+            <p class="post-summary">{essay.data.summary}</p>
+            <time datetime={essay.data.publishedAt.toISOString()}>
+              {fmt.format(essay.data.publishedAt)}
+            </time>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Layout>
+
+<style>
+  .section-head {
+    margin-bottom: var(--space-10);
+    max-width: var(--measure);
+  }
+
+  .section-head h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .lede {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 60, 'SOFT' 50;
+    font-size: clamp(1.15rem, 0.8vw + 1rem, 1.35rem);
+    line-height: 1.45;
+    color: var(--color-ink);
+  }
+
+  .empty {
+    color: var(--color-ink-soft);
+    font-size: 1rem;
+    border-left: 2px solid var(--color-rule);
+    padding-left: var(--space-4);
+    max-width: var(--measure-narrow);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .post-list li {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .post-title {
+    font-family: var(--font-serif);
+    font-variation-settings: 'opsz' 90, 'SOFT' 40;
+    font-weight: 460;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-ink);
+    width: max-content;
+  }
+
+  .post-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .post-summary {
+    color: var(--color-ink-soft);
+    margin: 0;
+    max-width: var(--measure-narrow);
+  }
+
+  time {
+    color: var(--color-ink-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+</style>
