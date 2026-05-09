@@ -1,19 +1,14 @@
-# Phase 5 cutover deploy.
+# Production deploy to GitHub Pages.
 #
-# Disabled until you flip the switch — manual trigger only via workflow_dispatch.
-# When ready, also enable GitHub Pages for this repo (Settings -> Pages ->
-# Source: GitHub Actions).
-#
-# Two cutover paths:
-#   (a) Move this repo to be jato.github.io itself (rename via Settings).
-#       The site will be served at https://jato.github.io/.
-#   (b) Keep this repo as jato-revamp. The site will be served at
-#       https://jato.github.io/jato-revamp/ — set astro.config.mjs `base`
-#       to '/jato-revamp/' before enabling.
+# Runs automatically on every push to main, and can also be triggered
+# manually via the Actions tab. Requires Pages source to be set to
+# "GitHub Actions" in repo Settings -> Pages.
 
 name: Deploy
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
