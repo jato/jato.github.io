@@ -1,9 +1,6 @@
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
-@import '@fontsource/source-serif-4/400.css';
-@import '@fontsource/source-serif-4/400-italic.css';
-@import '@fontsource/source-serif-4/600.css';
+@import '@fontsource-variable/inter-tight/index.css';
+@import '@fontsource-variable/fraunces/full.css';
+@import '@fontsource-variable/fraunces/full-italic.css';
 @import './tokens.css';
 
 *,
@@ -27,10 +24,12 @@ html {
 body {
   min-height: 100dvh;
   font-family: var(--font-sans);
-  color: var(--color-ink);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-sky-ink); /* used in hero band before paper card */
   background-color: var(--color-sky);
   animation: sky-pulse var(--duration-pulse) ease-out 1;
-  line-height: 1.55;
 }
 
 @keyframes sky-pulse {
@@ -48,32 +47,31 @@ body {
   }
 }
 
-a {
-  color: inherit;
-  text-underline-offset: 0.18em;
-  text-decoration-thickness: 1px;
-}
-
-a:hover {
-  text-decoration-thickness: 2px;
-}
-
+/* Headlines: Fraunces with display optical sizing + a touch of SOFT */
 h1,
 h2,
 h3 {
   font-family: var(--font-serif);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  font-weight: 480;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30, 'WONK' 0;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
   margin: 0 0 var(--space-4);
+  color: inherit;
 }
 
 h1 {
-  font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem);
+  font-size: clamp(2.5rem, 4vw + 1rem, 4.25rem);
+  font-weight: 460;
 }
 
 h2 {
-  font-size: clamp(1.5rem, 2vw + 0.75rem, 2rem);
+  font-size: clamp(1.5rem, 1.5vw + 0.9rem, 2.1rem);
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 1.25rem;
 }
 
 p {
@@ -81,8 +79,43 @@ p {
   max-width: var(--measure);
 }
 
+em,
+i {
+  font-style: italic;
+  font-synthesis: none;
+}
+
+/* Inside the paper card, body text gets ink color and slightly tighter feature settings */
+.paper-surface {
+  color: var(--color-ink);
+  font-feature-settings: 'ss01' on, 'cv11' on; /* Inter Tight stylistic alts */
+}
+
+.paper-surface .lede,
+.paper-surface .editorial {
+  font-family: var(--font-serif);
+  font-variation-settings: 'opsz' 60, 'SOFT' 50, 'WONK' 0;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-soft);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
 }

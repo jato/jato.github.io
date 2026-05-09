@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Clouds from './Clouds.astro';
+import Birds from './Birds.astro';
 
 interface Props {
   title: string;
@@ -30,10 +31,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#71acd6" />
   </head>
   <body>
+    {showClouds && <Birds />}
     {showClouds && <Clouds />}
     <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header">
       <a href="/" class="wordmark">jato</a>
       <nav aria-label="Primary">
@@ -43,17 +47,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         <a href="/about/">About</a>
       </nav>
     </header>
-    <main id="main" class="site-main">
-      <slot />
-    </main>
-    <footer class="site-footer">
-      <p>
-        <a href="https://github.com/jato">GitHub</a> ·
-        <a href="https://www.linkedin.com/in/jamesallenbrown">LinkedIn</a> ·
-        <a href="mailto:jatobrown@gmail.com">Email</a>
-      </p>
-      <p class="archive-link"><a href="/archive/">Earlier work →</a></p>
-    </footer>
+
+    <div class="page-card paper-surface">
+      <main id="main" class="site-main">
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <div class="footer-row">
+          <p class="links">
+            <a href="https://github.com/jato">GitHub</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://www.linkedin.com/in/jamesallenbrown">LinkedIn</a>
+            <span aria-hidden="true">·</span>
+            <a href="mailto:jatobrown@gmail.com">Email</a>
+          </p>
+          <p class="archive-link"><a href="/archive/">Earlier work →</a></p>
+        </div>
+      </footer>
+    </div>
 
     <style>
       .skip-link {
@@ -65,7 +76,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         left: var(--space-4);
         top: var(--space-4);
         background: var(--color-paper);
+        color: var(--color-ink);
         padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-sm);
         z-index: 100;
       }
 
@@ -76,17 +89,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         align-items: baseline;
         justify-content: space-between;
         gap: var(--space-6);
-        padding: var(--space-5) var(--space-6);
-        max-width: 1100px;
+        padding: var(--space-6) var(--space-6) var(--space-8);
+        max-width: 980px;
         margin: 0 auto;
+        color: var(--color-sky-ink);
       }
 
       .wordmark {
         font-family: var(--font-serif);
-        font-weight: 600;
-        font-size: 1.5rem;
+        font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
+        font-weight: 460;
+        font-size: 1.6rem;
+        line-height: 1;
         text-decoration: none;
-        color: var(--color-ink);
+        color: var(--color-sky-ink);
         letter-spacing: -0.01em;
       }
 
@@ -98,37 +114,55 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 
       .site-header nav a {
         text-decoration: none;
-        color: var(--color-ink-soft);
+        color: var(--color-sky-ink-soft);
         font-size: 0.95rem;
+        letter-spacing: 0.005em;
       }
 
       .site-header nav a:hover,
       .site-header nav a[aria-current='page'] {
-        color: var(--color-ink);
+        color: var(--color-sky-ink);
         text-decoration: underline;
+        text-underline-offset: 0.25em;
+      }
+
+      .page-card {
+        position: relative;
+        z-index: 5;
+        max-width: 980px;
+        margin: 0 auto var(--space-10);
+        background: var(--color-paper);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-card);
+        overflow: hidden;
       }
 
       .site-main {
-        position: relative;
-        z-index: 5;
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: var(--space-8) var(--space-6) var(--space-12);
+        padding: var(--space-12) var(--space-8) var(--space-10);
       }
 
       .site-footer {
-        position: relative;
-        z-index: 5;
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: var(--space-8) var(--space-6);
+        padding: var(--space-6) var(--space-8) var(--space-8);
         color: var(--color-ink-muted);
         font-size: 0.9rem;
         border-top: 1px solid var(--color-rule);
       }
 
-      .site-footer p {
-        margin: 0 0 var(--space-2);
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-4);
+        flex-wrap: wrap;
+      }
+
+      .footer-row p {
+        margin: 0;
+        max-width: none;
+      }
+
+      .links span {
+        margin: 0 var(--space-2);
+        opacity: 0.55;
       }
 
       .archive-link a {
@@ -136,11 +170,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         color: var(--color-ink-soft);
       }
 
-      @media (max-width: 600px) {
+      .archive-link a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 700px) {
         .site-header {
           flex-direction: column;
           gap: var(--space-3);
           align-items: flex-start;
+          padding: var(--space-5) var(--space-5) var(--space-6);
+        }
+        .page-card {
+          margin-left: var(--space-3);
+          margin-right: var(--space-3);
+        }
+        .site-main {
+          padding: var(--space-8) var(--space-5) var(--space-6);
+        }
+        .site-footer {
+          padding: var(--space-5);
+        }
+        .footer-row {
+          flex-direction: column;
         }
       }
     </style>

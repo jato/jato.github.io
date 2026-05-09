@@ -11,14 +11,17 @@ import Layout from '../components/Layout.astro';
       experiments that don't fit anywhere else.
     </p>
     <p class="lede-meta">
-      <a href="/writing/">Read the writing</a> ·
+      <a href="/writing/">Read the writing</a>
+      <span aria-hidden="true">·</span>
       <a href="/systems/">See the systems</a>
     </p>
   </section>
 
+  <hr class="rule" />
+
   <section class="now">
     <h2>Now</h2>
-    <p>
+    <p class="editorial">
       <em>TODO: one paragraph on current focus — what you're building, reading,
       thinking about. Update monthly.</em>
     </p>
@@ -28,20 +31,20 @@ import Layout from '../components/Layout.astro';
     <h2>Threads</h2>
     <ul class="thread-list">
       <li>
-        <a href="/writing/">Writing</a>
-        <span>Essays on operational judgment, AI-native workflows, and humane technology.</span>
+        <a href="/writing/" class="thread-title">Writing</a>
+        <p>Essays on operational judgment, AI-native workflows, and humane technology.</p>
       </li>
       <li>
-        <a href="/systems/">Systems</a>
-        <span>Operating models for incident response, escalation, and metrics — written down.</span>
+        <a href="/systems/" class="thread-title">Systems</a>
+        <p>Operating models for incident response, escalation, and metrics — written down.</p>
       </li>
       <li>
-        <a href="/experiments/">Experiments</a>
-        <span>Smaller things: visual studies, AI workflow tools, design explorations.</span>
+        <a href="/experiments/" class="thread-title">Experiments</a>
+        <p>Smaller things: visual studies, AI workflow tools, design explorations.</p>
       </li>
       <li>
-        <a href="/archive/">Archive</a>
-        <span>Earlier work — bootcamp-era projects and posts, kept for the record.</span>
+        <a href="/archive/" class="thread-title">Archive</a>
+        <p>Earlier work — bootcamp-era projects and posts, kept for the record.</p>
       </li>
     </ul>
   </section>
@@ -49,15 +52,19 @@ import Layout from '../components/Layout.astro';
 
 <style>
   .intro {
-    max-width: var(--measure);
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-8);
+  }
+
+  .intro h1 {
+    margin-bottom: var(--space-5);
   }
 
   .lede {
-    font-family: var(--font-serif);
-    font-size: clamp(1.15rem, 1vw + 1rem, 1.4rem);
-    line-height: 1.5;
+    font-size: clamp(1.2rem, 1vw + 1.05rem, 1.5rem);
+    line-height: 1.4;
     color: var(--color-ink);
+    margin-bottom: var(--space-5);
+    max-width: var(--measure-narrow);
   }
 
   .lede-meta {
@@ -65,10 +72,32 @@ import Layout from '../components/Layout.astro';
     font-size: 0.95rem;
   }
 
+  .lede-meta span {
+    margin: 0 var(--space-2);
+    opacity: 0.55;
+  }
+
+  .rule {
+    border: 0;
+    height: 1px;
+    background: var(--color-rule);
+    margin: var(--space-8) 0;
+  }
+
   .now,
   .threads {
-    max-width: var(--measure);
     margin-bottom: var(--space-10);
+  }
+
+  .now h2,
+  .threads h2 {
+    color: var(--color-ink-muted);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: var(--space-5);
   }
 
   .thread-list {
@@ -76,28 +105,35 @@ import Layout from '../components/Layout.astro';
     padding: 0;
     margin: 0;
     display: grid;
-    gap: var(--space-5);
+    gap: var(--space-6);
   }
 
   .thread-list li {
     display: grid;
-    gap: var(--space-1);
+    gap: var(--space-2);
   }
 
-  .thread-list a {
+  .thread-title {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-variation-settings: 'opsz' 90, 'SOFT' 40, 'WONK' 0;
+    font-weight: 460;
+    font-size: 1.6rem;
     text-decoration: none;
     color: var(--color-ink);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    width: max-content;
   }
 
-  .thread-list a:hover {
+  .thread-title:hover {
     text-decoration: underline;
+    text-underline-offset: 0.15em;
   }
 
-  .thread-list span {
+  .thread-list p {
     color: var(--color-ink-soft);
-    font-size: 0.95rem;
+    font-size: 1rem;
+    max-width: var(--measure-narrow);
+    margin: 0;
   }
 </style>
