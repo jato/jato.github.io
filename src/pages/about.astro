@@ -22,6 +22,17 @@ import Layout from '../components/Layout.astro';
       <strong>Shippo</strong> (multi-carrier shipping for e-commerce).
     </p>
 
+    <h2 class="eyebrow">Apps</h2>
+    <p>
+      <strong>Jaunty Lobster</strong> — a personal job-search assistant.
+      iOS, currently in TestFlight beta.
+    </p>
+    <p class="legal-links">
+      <a href="/lobster/terms/">Terms of Service</a>
+      <span aria-hidden="true">·</span>
+      <a href="/lobster/privacy/">Privacy Policy</a>
+    </p>
+
     <h2 class="eyebrow">Reach me</h2>
     <p>
       <a href="mailto:jatobrown@gmail.com">jatobrown@gmail.com</a><br />
@@ -76,5 +87,15 @@ import Layout from '../components/Layout.astro';
 
   .prose strong {
     font-weight: 500;
+  }
+
+  .legal-links {
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .legal-links span {
+    margin: 0 var(--space-2);
+    opacity: 0.55;
   }
 </style>

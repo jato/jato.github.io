@@ -69,10 +69,21 @@ const archivePosts = defineCollection({
   }),
 });
 
+const legal = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/legal' }),
+  schema: z.object({
+    title: z.string(),
+    app: z.string(),
+    lastUpdated: z.coerce.date(),
+    summary: z.string().optional(),
+  }),
+});
+
 export const collections = {
   systems,
   experiments,
   essays,
   archiveProjects,
   archivePosts,
+  legal,
 };
