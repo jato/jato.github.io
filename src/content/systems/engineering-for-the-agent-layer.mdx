@@ -17,7 +17,7 @@ context window, three turns deep into a multi-step task.
 
 That shift, from documentation written for humans to documentation written
 for agents, is the smaller version of a bigger pattern. Agents have moved
-up a layer — from running scripts against our systems to becoming
+up a layer: from running scripts against our systems to becoming
 first-class consumers of them.
 
 Most of the practical implementation of this lives in MCP. Anthropic
@@ -47,7 +47,7 @@ load. What you cache. What you summarize. What you just ask for again.
 Three things I think engineering teams should be doing:
 
 **Make your tools agent-readable.** Function names, error messages, and
-return shapes carry the weight here — a model needs to reason about them
+return shapes carry the weight here. A model needs to reason about them
 as easily as a human does. An LLM endpoint on top is mostly cosmetic.
 
 **Treat MCP servers like first-class APIs.** Versioned. Documented.
