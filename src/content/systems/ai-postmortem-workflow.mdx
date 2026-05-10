@@ -27,19 +27,18 @@ produce a credible first draft of a postmortem in minutes. It can pull the
 timeline. Identify the participants. Surface the metrics that mattered.
 Even guess at root cause from the surface evidence.
 
-That doesn't mean the AI writes the postmortem. It means the AI does the
-*transcription*. The human does the *judgment*.
+The split is clean. The AI does the *transcription*. The human does the
+*judgment*.
 
 The principles I keep coming back to:
 
 **The first draft should be automatic.** If a human is opening a blank
 document and pulling timestamps from Slack, the system has failed. The
-question isn't whether AI is involved. It's whether the involvement is good
-enough that the human reaches for it instead of skipping it.
+real measure: does the human reach for the AI draft, or skip past it?
 
-**The human verifies, not the model.** Anything the AI produces has to be
-reviewed line by line by someone who was there. The point isn't to skip the
-review. The point is to make the review the only manual step.
+**Verification belongs with the human.** Anything the AI produces has to
+be reviewed line by line by someone who was there. The review is the
+manual step you keep. Everything around it should disappear.
 
 **The learning loop has to close.** A postmortem that doesn't change anything
 is paperwork. The workflow has to make it cheap to convert "lesson" into
@@ -49,8 +48,9 @@ better documentation of the same recurring failures.
 **Speed enables honesty.** When postmortems take days to write, people start
 unconsciously editing the timeline to be defensible. When they take thirty
 minutes to draft and an hour to refine, you can afford to be plain about
-what actually happened. Speed is a precondition for blameless culture, not
-a substitute for it.
+what actually happened. Speed makes blameless culture possible. The
+culture still has to come from somewhere — without it, fast tools just
+produce defensible drafts faster.
 
 What's worth asking: which parts of incident learning are still genuinely
 human work? Pattern recognition across multiple incidents. Deciding what's

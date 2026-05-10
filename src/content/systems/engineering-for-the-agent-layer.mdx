@@ -16,9 +16,9 @@ code. The audience is the agent that will consume this endpoint, in a
 context window, three turns deep into a multi-step task.
 
 That shift, from documentation written for humans to documentation written
-for agents, is the smaller version of a bigger pattern. Agents are
-becoming first-class consumers of the systems we build. Not just operators
-of them.
+for agents, is the smaller version of a bigger pattern. Agents have moved
+up a layer — from running scripts against our systems to becoming
+first-class consumers of them.
 
 Most of the practical implementation of this lives in MCP. Anthropic
 shipped the Model Context Protocol in late 2024 as an open standard for
@@ -28,7 +28,7 @@ Postgres. Filesystems. Observability platforms. The protocol does one
 thing: it standardizes the contract between an agent and the tools it can
 call.
 
-That sounds technical. It is. But the implications are not just technical.
+That sounds technical. It is. The implications travel further.
 
 When an agent can hit your tool through a protocol, your tool becomes part
 of the agent's reachable surface area. Every well-named function, every
@@ -46,17 +46,17 @@ load. What you cache. What you summarize. What you just ask for again.
 
 Three things I think engineering teams should be doing:
 
-**Make your tools agent-readable.** This isn't about adding an LLM
-endpoint. It's about writing function names, error messages, and return
-shapes that a model can reason about as easily as a human can.
+**Make your tools agent-readable.** Function names, error messages, and
+return shapes carry the weight here — a model needs to reason about them
+as easily as a human does. An LLM endpoint on top is mostly cosmetic.
 
 **Treat MCP servers like first-class APIs.** Versioned. Documented.
 Backward-compatible. Tested. The agent is a client, and clients depend on
 stability.
 
-**Pay attention to what gets into the context window.** The cost is not
-bytes. The cost is attention budget. An agent that's drowning in
-irrelevant context is an agent that makes worse decisions, slowly.
+**Pay attention to what gets into the context window.** The real currency
+is the model's attention budget. Bytes are cheap. Relevance is what burns.
+An agent drowning in irrelevant context makes worse decisions, slowly.
 
 The job of engineering keeps changing. It used to be: build the system,
 document it for humans, monitor it. Now there's a fourth thing. Design it
